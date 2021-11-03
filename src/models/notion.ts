@@ -1,16 +1,21 @@
-export interface Database {
-  object: string
-  id: string
-  created_time: string
-  last_edited_time: string
-  parent: {
+export interface PostProperty {
+  title: {
     type: string
-    page_id: string
+    text: {
+      content: string
+    }
   }
+}
+
+export interface Post {
+  id: string
   icon: {
     type: string
     emoji: string
   }
+  archived: boolean
+  created_time: string
+  last_edited_time: string
+  properties: PostProperty
   url: string
-  title: []
 }
