@@ -2,10 +2,21 @@ import type { NextPage } from 'next'
 import type { Post } from '../models/notion'
 import { getDatabase } from '../lib/notion'
 import Layout from '../components/common/Layout'
-import PostCard from '../components/post/PostCard'
+import PostCard from '../components/page/post/PostCard'
 import { Container, Box, Typography, Stack } from '@mui/material'
 
 export const databaseId = process.env.NOTION_DATABASE_ID || ''
+
+export async function getStaticProps() {
+  const database = await getDatabase(databaseId)
+
+  return {
+    props: {
+      posts: database,
+    },
+    revalidate: 1,
+  }
+}
 
 const Hero = () => {
   return (
@@ -28,7 +39,7 @@ const Hero = () => {
   )
 }
 
-const Home = ({ posts }: { posts: Post[] }) => {
+const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (
     <Layout>
       <Hero />
@@ -44,14 +55,3 @@ const Home = ({ posts }: { posts: Post[] }) => {
 }
 
 export default Home
-
-export async function getStaticProps() {
-  const database = await getDatabase(databaseId)
-
-  return {
-    props: {
-      posts: database,
-    },
-    revalidate: 1,
-  }
-}
