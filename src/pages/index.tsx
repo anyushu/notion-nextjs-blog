@@ -1,6 +1,12 @@
-import type { NextPage } from 'next'
+import type { NextPage, InferGetStaticPropsType } from 'next'
+import { getDatabase } from '../lib/notion'
 
-const Home: NextPage = () => {
+export const databaseId = process.env.NOTION_DATABASE_ID || ''
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>
+
+const Home: NextPage<Props> = ({ posts }) => {
+
   return (
     <>
       <div></div>
@@ -9,3 +15,14 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export async function getStaticProps() {
+  const database = await getDatabase(databaseId)
+
+  return {
+    props: {
+      posts: database,
+    },
+    revalidate: 1,
+  }
+}
