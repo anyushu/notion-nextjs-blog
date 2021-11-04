@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import type { Post } from '../../../models/notion'
-import { Card, CardContent, Typography, CardActionArea } from '@mui/material'
+import { Box, Card, CardContent, Typography, CardActionArea } from '@mui/material'
+import { formatDate } from '../../../util/formatDate'
+import { Twemoji } from 'react-emoji-render'
 
 /**
  * PostCard component
@@ -12,9 +14,17 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
       <Link href={`/posts/${post.id}`} passHref>
         <CardActionArea>
           {post.icon.emoji && (
-            <Typography variant="h5" component="div">
-              {post.icon.emoji}
-            </Typography>
+            <Box
+              px={2}
+              pt={2}
+              sx={{
+                textAlign: 'center',
+                fontSize: '3rem',
+                lineHeight: 1,
+              }}
+            >
+              <Twemoji svg text={post.icon.emoji} />
+            </Box>
           )}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -22,7 +32,7 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
             </Typography>
             {post.created_time && (
               <Typography variant="body2" color="text.secondary">
-                {post.created_time}
+                {formatDate(post.created_time)}
               </Typography>
             )}
           </CardContent>
