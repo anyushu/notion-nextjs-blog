@@ -39,8 +39,6 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
   } else {
     const postTitle = post.properties.title.title[0].text.content
 
-    console.log(blocks)
-
     return (
       <>
         <Head>
