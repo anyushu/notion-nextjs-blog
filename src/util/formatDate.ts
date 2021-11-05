@@ -1,7 +1,7 @@
 /**
  * date formater
  *
- * @param {Date} dt
+ * @param {string} datetime
  * @returns {string} yyyy-mm-dd
  */
 export function formatDate(datetime: string): string {

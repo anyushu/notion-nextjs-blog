@@ -31,7 +31,7 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
               {post.properties.title.title[0].text.content}
             </Typography>
             {post.created_time && (
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" textAlign="right">
                 {formatDate(post.created_time)}
               </Typography>
             )}
