@@ -14,6 +14,7 @@ class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
