@@ -1,3 +1,5 @@
+import type { NextPage } from 'next'
+import { siteTitle } from '../../next-seo.config'
 import Header from './Header'
 import Footer from './Footer'
 
@@ -5,14 +7,12 @@ interface Props {
   children: React.ReactNode
 }
 
-const siteTitle = 'blogでっす'
-
-const Layout: React.VFC<Props> = ({ children }) => {
+const Layout: NextPage<Props> = ({ children }) => {
   return (
     <>
-      <Header title={siteTitle} />
+      <Header props={{ title: siteTitle }} />
       <main>{children}</main>
-      <Footer title={siteTitle} />
+      <Footer props={{ title: siteTitle }} />
     </>
   )
 }

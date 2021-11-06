@@ -1,11 +1,12 @@
 import type { GetStaticPropsContext, NextPage } from 'next'
+import { NextSeo } from 'next-seo'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
-import Head from 'next/head'
 import type { Post } from '../../models/notion'
 import { getPost, getDatabase, getBlocks } from '../../lib/notion'
 import Layout from '../../components/common/Layout'
 import NotionBlock from '../../components/page/post/NotionBlock'
-import { Container, Box, Typography, Stack } from '@mui/material'
+import { Container, Box, Typography, Divider, Stack, Chip } from '@mui/material'
+import { formatDate } from '../../util/formatDate'
 
 export const databaseId = process.env.NOTION_DATABASE_ID || ''
 
@@ -41,24 +42,42 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
 
     return (
       <>
-        <Head>
-          <title>{`${postTitle}`}</title>
-          <meta property="og:title" content={`${postTitle}`} />
-          <meta
-            property="og:image"
-            content={`https://diary.unronritaro.net/api/ogp?title=${encodeURIComponent(postTitle)}`}
-          />
-          <meta
-            name="twitter:image"
-            content={`https://diary.unronritaro.net/api/ogp?title=${encodeURIComponent(postTitle)}`}
-          />
-          <meta name="twitter:card" content="summary_large_image" />
-        </Head>
+        <NextSeo title={`${postTitle}`} />
         <Layout>
-          <Container>
-            {blocks.map((block: GetBlockResponse, index) => {
-              return <NotionBlock key={index} block={block} />
-            })}
+          <Container maxWidth="md">
+            <Box component="article" py={4}>
+              {/* blog title */}
+              <Typography component="h1" variant="h3">
+                {postTitle}
+              </Typography>
+
+              <Stack direction="row" alignItems="center" spacing={2} mt={2} mb={3}>
+                {post.created_time && (
+                  <Typography variant="body2" color="text.secondary" textAlign="right">
+                    {formatDate(post.created_time)}
+                  </Typography>
+                )}
+                {post.properties.tags.multi_select[0].name && (
+                  <Chip
+                    label={post.properties.tags.multi_select[0].name}
+                    color="primary"
+                    size="small"
+                    sx={{
+                      lineHeight: '1rem',
+                    }}
+                  />
+                )}
+              </Stack>
+
+              <Divider />
+
+              {/* blog content */}
+              <Box pt={4}>
+                {blocks.map((block: GetBlockResponse, index) => {
+                  return <NotionBlock key={index} block={block} />
+                })}
+              </Box>
+            </Box>
           </Container>
         </Layout>
       </>

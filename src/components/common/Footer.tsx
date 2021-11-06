@@ -1,10 +1,11 @@
+import type { NextPage } from 'next'
 import { Box, Container, Typography } from '@mui/material'
 
 interface Props {
   title: string
 }
 
-const Footer = (props: Props) => {
+const Footer: NextPage<{ props: Props }> = ({ props }) => {
   const { title } = props
 
   return (

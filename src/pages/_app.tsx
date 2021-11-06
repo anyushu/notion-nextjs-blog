@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { AppProps } from 'next/app'
+import Head from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -23,6 +24,9 @@ export default function MyApp(props: MyAppProps): JSX.Element {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <TransitionProps />
+        <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
         <DefaultSeo {...defaultSeo} />
         <Component {...pageProps} />
       </ThemeProvider>

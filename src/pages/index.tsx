@@ -29,7 +29,7 @@ const Hero = () => {
     >
       <Container maxWidth="sm">
         <Typography component="h1" variant="h2" align="center" color="text.primary" gutterBottom>
-          Hero
+          Hero Section
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph>
           あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。

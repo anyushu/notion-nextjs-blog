@@ -26,10 +26,11 @@ export interface PostProperty {
       }
     }]
   }
-  slug: {
-    type: 'rich_text'
-    rich_text: [{
-      plain_text: string
+  tags: {
+    type: 'multi_select'
+    multi_select: [{
+      color: string
+      name: string
     }]
   }
 }
