@@ -23,8 +23,14 @@ const Hero = () => {
     <Box
       sx={{
         bgcolor: 'background.paper',
-        pt: 8,
-        pb: 6,
+        pt: {
+          xs: 4,
+          md: 8,
+        },
+        pb: {
+          xs: 3,
+          md: 6,
+        },
       }}
     >
       <Container maxWidth="sm">
@@ -47,7 +53,7 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
         <Grid container spacing={3}>
           {posts.map((post: Post, index) => {
             return (
-              <Grid item xs={4} key={index}>
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <PostCard post={post} />
               </Grid>
             )

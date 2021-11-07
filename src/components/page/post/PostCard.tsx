@@ -10,7 +10,6 @@ import { formatDate } from '../../../util/formatDate'
  * PostCard component
  */
 const PostCard: NextPage<{ post: Post }> = ({ post }) => {
-  console.log(post.properties.tags.multi_select[0].name)
   return (
     <Card>
       <Link href={`/posts/${post.id}`} passHref>
