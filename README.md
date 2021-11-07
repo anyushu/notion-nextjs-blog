@@ -1,3 +1,3 @@
 # (WIP) Notion API × Next.js
 
-JAMstack Blog
+[demo site](https://notion-nextjs-blog-livid.vercel.app/)
