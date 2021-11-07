@@ -1,14 +1,15 @@
-import * as React from 'react'
+/* eslint-disable import/named */
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import CssBaseline from '@mui/material/CssBaseline'
+import { ThemeProvider } from '@mui/material/styles'
+import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import { DefaultSeo } from 'next-seo'
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import { CacheProvider, EmotionCache } from '@emotion/react'
-import theme from '../styles/theme'
-import createEmotionCache from '../styles/createEmotionCache'
+import * as React from 'react'
 import TransitionProps from '../components/common/TransitionProps'
 import { defaultSeo } from '../next-seo.config'
+import createEmotionCache from '../styles/createEmotionCache'
+import theme from '../styles/theme'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -21,12 +22,12 @@ export default function MyApp(props: MyAppProps): JSX.Element {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   return (
     <CacheProvider value={emotionCache}>
+      <Head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <TransitionProps />
-        <Head>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
         <DefaultSeo {...defaultSeo} />
         <Component {...pageProps} />
       </ThemeProvider>

@@ -1,9 +1,9 @@
+import { Container, Box, Typography, Grid } from '@mui/material'
 import type { NextPage } from 'next'
-import type { Post } from '../models/notion'
-import { getDatabase } from '../lib/notion'
 import Layout from '../components/common/Layout'
 import PostCard from '../components/page/post/PostCard'
-import { Container, Box, Typography, Grid } from '@mui/material'
+import { getDatabase } from '../lib/notion'
+import type { Post } from '../models/notion'
 
 export const databaseId = process.env.NOTION_DATABASE_ID || ''
 

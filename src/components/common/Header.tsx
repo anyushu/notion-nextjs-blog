@@ -1,6 +1,6 @@
+import { AppBar, Toolbar, Typography } from '@mui/material'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { AppBar, Toolbar, Typography } from '@mui/material'
 
 interface Props {
   title: string

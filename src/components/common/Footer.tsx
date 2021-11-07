@@ -1,5 +1,5 @@
-import type { NextPage } from 'next'
 import { Box, Container, Typography } from '@mui/material'
+import type { NextPage } from 'next'
 
 interface Props {
   title: string

@@ -1,8 +1,8 @@
-import * as React from 'react'
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import createEmotionServer from '@emotion/server/create-instance'
-import theme from '../styles/theme'
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
+import * as React from 'react'
 import createEmotionCache from '../styles/createEmotionCache'
+import theme from '../styles/theme'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { siteTitle } from '../../next-seo.config'
-import Header from './Header'
 import Footer from './Footer'
+import Header from './Header'
 
 interface Props {
   children: React.ReactNode

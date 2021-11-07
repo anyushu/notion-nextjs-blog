@@ -1,6 +1,6 @@
-import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { Box, Typography, ListItem } from '@mui/material'
 import { grey } from '@mui/material/colors'
+import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
 

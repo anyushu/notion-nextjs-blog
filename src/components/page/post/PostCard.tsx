@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
-import Link from 'next/link'
-import type { Post } from '../../../models/notion'
 import { Box, Card, CardContent, Typography, CardActionArea, Stack, Chip } from '@mui/material'
 import { blue } from '@mui/material/colors'
-import { formatDate } from '../../../util/formatDate'
+import type { NextPage } from 'next'
+import Link from 'next/link'
 import { Twemoji } from 'react-emoji-render'
+import type { Post } from '../../../models/notion'
+import { formatDate } from '../../../util/formatDate'
 
 /**
  * PostCard component
