@@ -20,18 +20,22 @@ export interface Post {
 export interface PostProperty {
   title: {
     type: 'title'
-    title: [{
-      text: {
-        content: string
-      }
-    }]
+    title: [
+      {
+        text: {
+          content: string
+        }
+      },
+    ]
   }
   tags: {
     type: 'multi_select'
-    multi_select: [{
-      color: string
-      name: string
-    }]
+    multi_select: [
+      {
+        color: string
+        name: string
+      },
+    ]
   }
 }
 
