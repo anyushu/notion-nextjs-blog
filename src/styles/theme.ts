@@ -7,15 +7,15 @@ const theme = createTheme({
     fontFamily: ['Noto Sans JP', 'sans-serif'].join(','),
     h1: {
       fontWeight: 'bold',
-      lineHeight: 1.5,
+      lineHeight: 1.25,
     },
     h2: {
       fontWeight: 'bold',
-      lineHeight: 1.5,
+      lineHeight: 1.25,
     },
     h3: {
       fontWeight: 'bold',
-      lineHeight: 1.5,
+      lineHeight: 1.25,
     },
     h4: {
       fontWeight: 'bold',

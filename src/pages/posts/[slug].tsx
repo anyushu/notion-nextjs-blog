@@ -2,6 +2,7 @@ import { Container, Box, Typography, Divider, Stack, Chip } from '@mui/material'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import { Twemoji } from 'react-emoji-render'
 import Layout from '../../components/common/Layout'
 import NotionBlock from '../../components/page/post/NotionBlock'
 import { getPost, getDatabase, getBlocks } from '../../lib/notion'
@@ -24,13 +25,14 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const post = await getPost(context?.params?.slug as string)
   const blocks = await getBlocks(context?.params?.slug as string)
+  const revalidate = 60 * 60
 
   return {
     props: {
       post,
       blocks,
     },
-    revalidate: 1,
+    revalidate: revalidate,
   }
 }
 
@@ -53,8 +55,8 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
 
               <Stack direction="row" alignItems="center" spacing={2} mt={2} mb={3}>
                 {post.created_time && (
-                  <Typography variant="body2" color="text.secondary" textAlign="right">
-                    {formatDate(post.created_time)}
+                  <Typography color="text.secondary" textAlign="right">
+                    <Twemoji svg text="✏️" /> {formatDate(post.created_time)}
                   </Typography>
                 )}
                 {post.properties.tags.multi_select[0].name && (

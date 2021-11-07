@@ -1,8 +1,11 @@
-import { Box, Typography, ListItem } from '@mui/material'
+import { Box, Typography, FormGroup, FormControlLabel, Checkbox } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
+
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
   const { type } = block
@@ -29,14 +32,57 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
         </Typography>
       )
     case 'bulleted_list_item':
-      return <ListItem>{block.bulleted_list_item.text[0].plain_text}</ListItem>
-    case 'numbered_list_item':
-      return <ListItem>{block.numbered_list_item.text[0].plain_text}</ListItem>
-    case 'code':
       return (
-        <Box component="code" mb={1}>
+        <li
+          style={{
+            marginLeft: '1rem',
+            marginBottom: '0.5rem',
+          }}
+        >
+          {block.bulleted_list_item.text[0].plain_text}
+        </li>
+      )
+    case 'numbered_list_item':
+      return (
+        <li
+          style={{
+            marginLeft: '1rem',
+            marginBottom: '0.5rem',
+          }}
+        >
+          {block.numbered_list_item.text[0].plain_text}
+        </li>
+      )
+    case 'to_do':
+      const checked = block.to_do.checked ? (
+        <Checkbox readOnly={true} defaultChecked />
+      ) : (
+        <Checkbox readOnly={true} />
+      )
+      return (
+        <FormGroup>
+          <FormControlLabel
+            sx={{
+              pointerEvents: 'none',
+            }}
+            control={checked}
+            label={block.to_do.text[0].plain_text}
+          />
+        </FormGroup>
+      )
+    case 'code':
+      const language = block.code.language
+      return (
+        <SyntaxHighlighter
+          language={language}
+          style={ocean}
+          customStyle={{
+            padding: '1rem',
+            margin: '1rem 0',
+          }}
+        >
           {block.code.text[0].plain_text}
-        </Box>
+        </SyntaxHighlighter>
       )
     case 'quote':
       return (
