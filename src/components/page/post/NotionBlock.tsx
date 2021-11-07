@@ -54,10 +54,20 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
         </li>
       )
     case 'to_do':
-      const checked = block.to_do.checked ? <Checkbox defaultChecked /> : <Checkbox />
+      const checked = block.to_do.checked ? (
+        <Checkbox readOnly={true} defaultChecked />
+      ) : (
+        <Checkbox readOnly={true} />
+      )
       return (
         <FormGroup>
-          <FormControlLabel control={checked} label={block.to_do.text[0].plain_text} />
+          <FormControlLabel
+            sx={{
+              pointerEvents: 'none',
+            }}
+            control={checked}
+            label={block.to_do.text[0].plain_text}
+          />
         </FormGroup>
       )
     case 'code':

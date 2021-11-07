@@ -14,20 +14,18 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
     <Card>
       <Link href={`/posts/${post.id}`} passHref>
         <CardActionArea>
-          {post.icon.emoji && (
-            <Box
-              py={5}
-              px={3}
-              sx={{
-                backgroundColor: blue[50],
-                textAlign: 'center',
-                fontSize: '5rem',
-                lineHeight: 1,
-              }}
-            >
-              <Twemoji svg text={post.icon.emoji} />
-            </Box>
-          )}
+          <Box
+            py={5}
+            px={3}
+            sx={{
+              backgroundColor: blue[50],
+              textAlign: 'center',
+              fontSize: '5rem',
+              lineHeight: 1,
+            }}
+          >
+            <Twemoji svg text={post.icon?.emoji || '☕'} />
+          </Box>
           <CardContent>
             <Typography variant="h5" component="h2" mb={3}>
               {post.properties.title.title[0].text.content}
@@ -44,8 +42,8 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
                 />
               )}
               {post.created_time && (
-                <Typography variant="body2" color="text.secondary" textAlign="right">
-                  {formatDate(post.created_time)}
+                <Typography color="text.secondary" textAlign="right">
+                  <Twemoji svg text="✏️" /> {formatDate(post.created_time)}
                 </Typography>
               )}
             </Stack>
