@@ -9,12 +9,13 @@ export const databaseId = process.env.NOTION_DATABASE_ID || ''
 
 export async function getStaticProps() {
   const database = await getDatabase(databaseId)
+  const revalidate = 60 * 60
 
   return {
     props: {
       posts: database,
     },
-    revalidate: 1,
+    revalidate: revalidate,
   }
 }
 
