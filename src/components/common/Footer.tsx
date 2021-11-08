@@ -9,12 +9,10 @@ const Footer: NextPage<{ props: Props }> = ({ props }) => {
   const { title } = props
 
   return (
-    <Box component="footer" sx={{ py: 3 }}>
+    <Box component="footer" py={3} mt={4}>
       <Container>
         <Typography variant="body2" color="text.secondary" align="center">
-          {'© '}
-          {title} {new Date().getFullYear()}
-          {'.'}
+          {'©'} {new Date().getFullYear()} {title} {'.'}
         </Typography>
       </Container>
     </Box>

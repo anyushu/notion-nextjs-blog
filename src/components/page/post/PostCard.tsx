@@ -27,7 +27,7 @@ const PostCard: NextPage<{ post: Post }> = ({ post }) => {
             <Twemoji svg text={post.icon?.emoji || '☕'} />
           </Box>
           <CardContent>
-            <Typography variant="h5" component="h2" mb={3}>
+            <Typography variant="h6" component="h2" mb={3}>
               {post.properties.title.title[0].text.content}
             </Typography>
             <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={1}>

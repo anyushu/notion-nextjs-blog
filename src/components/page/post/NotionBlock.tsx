@@ -1,9 +1,9 @@
-import { Box, Typography, FormGroup, FormControlLabel, Checkbox } from '@mui/material'
+import { Box, Typography, FormGroup, FormControlLabel, Checkbox, Divider } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
-
+import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
@@ -13,24 +13,28 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
   switch (type) {
     case 'paragraph':
       return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
+
     case 'heading_1':
       return (
-        <Typography component="h1" variant="h3" mt={3} mb={2}>
+        <Typography component="h1" variant="h4" mt={3} mb={2}>
           {block.heading_1.text[0].plain_text}
         </Typography>
       )
+
     case 'heading_2':
       return (
-        <Typography component="h2" variant="h4" mt={3} mb={2}>
+        <Typography component="h2" variant="h5" mt={3} mb={2}>
           {block.heading_2.text[0].plain_text}
         </Typography>
       )
+
     case 'heading_3':
       return (
-        <Typography component="h3" variant="h5" mt={2} mb={1}>
+        <Typography component="h3" variant="h6" mt={2} mb={1}>
           {block.heading_3.text[0].plain_text}
         </Typography>
       )
+
     case 'bulleted_list_item':
       return (
         <li
@@ -42,6 +46,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           {block.bulleted_list_item.text[0].plain_text}
         </li>
       )
+
     case 'numbered_list_item':
       return (
         <li
@@ -53,6 +58,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           {block.numbered_list_item.text[0].plain_text}
         </li>
       )
+
     case 'to_do':
       const checked = block.to_do.checked ? (
         <Checkbox readOnly={true} defaultChecked />
@@ -70,6 +76,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           />
         </FormGroup>
       )
+
     case 'code':
       const language = block.code.language
       return (
@@ -84,6 +91,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           {block.code.text[0].plain_text}
         </SyntaxHighlighter>
       )
+
     case 'quote':
       return (
         <Box
@@ -101,6 +109,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           {block.quote.text[0].plain_text}
         </Box>
       )
+
     case 'image':
       // @ts-ignore
       const src = block.image.file.url as string
@@ -113,7 +122,30 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
           <Image layout="fill" objectFit="contain" src={src} alt={alt} priority={true} />
         </Box>
       )
+
+    case 'embed':
+      return (
+        <Typography mb={1}>
+          <a href={block.embed.url} target="_blank" rel="noreferrer">
+            <Twemoji svg text="📎" /> {block.embed.url}
+          </a>
+        </Typography>
+      )
+
+    case 'bookmark':
+      return (
+        <Typography mb={1}>
+          <a href={block.bookmark.url} target="_blank" rel="noreferrer">
+            <Twemoji svg text="📎" /> {block.bookmark.url}
+          </a>
+        </Typography>
+      )
+
+    case 'divider':
+      return <Divider sx={{ margin: '1rem 0' }} />
+
     default:
+      console.log(block)
       return <></>
   }
 }

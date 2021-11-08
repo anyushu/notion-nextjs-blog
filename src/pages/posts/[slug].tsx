@@ -44,12 +44,21 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
 
     return (
       <>
-        <NextSeo title={`${postTitle}`} />
+        <NextSeo
+          title={`${postTitle}`}
+          description={post.properties.description.rich_text[0].plain_text}
+        />
         <Layout>
           <Container maxWidth="md">
-            <Box component="article" py={4}>
+            <Box
+              component="article"
+              py={4}
+              sx={{
+                wordBreak: 'break-all',
+              }}
+            >
               {/* blog title */}
-              <Typography component="h1" variant="h3">
+              <Typography component="h1" variant="h4">
                 {postTitle}
               </Typography>
 

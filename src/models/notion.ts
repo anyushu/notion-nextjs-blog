@@ -7,11 +7,9 @@ export interface Post {
     type: string
     emoji: string
   }
-  archived: boolean
   created_time: string
   last_edited_time: string
   properties: PostProperty
-  url: string
 }
 
 /**
@@ -28,6 +26,14 @@ export interface PostProperty {
       },
     ]
   }
+  description: {
+    type: 'rich_text'
+    rich_text: [
+      {
+        plain_text: string
+      },
+    ]
+  }
   tags: {
     type: 'multi_select'
     multi_select: [
@@ -37,11 +43,4 @@ export interface PostProperty {
       },
     ]
   }
-}
-
-/**
- * property of notion database content
- */
-export interface Blocks {
-  type: string
 }
