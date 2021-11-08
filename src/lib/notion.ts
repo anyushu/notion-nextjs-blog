@@ -54,8 +54,17 @@ export const getPost = async (pageId: string) => {
  * @returns notion.blocks.children.list
  */
 export const getBlocks = async (blockId: string) => {
-  const response = await notion.blocks.children.list({
+  let results = []
+  let response = await notion.blocks.children.list({
     block_id: blockId,
   })
-  return response.results
+  results = [...response.results]
+  while (response.has_more) {
+    response = await notion.blocks.children.list({
+      block_id: blockId,
+      start_cursor: response.next_cursor || undefined,
+    })
+    results = [...results, ...response.results]
+  }
+  return results
 }
