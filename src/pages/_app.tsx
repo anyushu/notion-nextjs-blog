@@ -21,16 +21,18 @@ interface MyAppProps extends AppProps {
 export default function MyApp(props: MyAppProps): JSX.Element {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   return (
-    <CacheProvider value={emotionCache}>
+    <>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <TransitionProps />
-        <DefaultSeo {...defaultSeo} />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </CacheProvider>
+      <DefaultSeo {...defaultSeo} />
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <TransitionProps />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </CacheProvider>
+    </>
   )
 }

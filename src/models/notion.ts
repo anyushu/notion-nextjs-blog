@@ -26,14 +26,6 @@ export interface PostProperty {
       },
     ]
   }
-  slug: {
-    type: 'rich_text'
-    rich_text: [
-      {
-        plain_text: string
-      },
-    ]
-  }
   description: {
     type: 'rich_text'
     rich_text: [
