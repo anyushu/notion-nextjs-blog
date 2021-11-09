@@ -8,24 +8,30 @@ const notion = new Client({
 })
 
 /**
+ * default database filter
+ */
+export const databaseFilter = {
+  or: [
+    {
+      property: 'published',
+      checkbox: {
+        equals: true,
+      },
+    },
+  ],
+}
+
+/**
  * get notion database by id
  *
  * @param {string} databaseId
  * @returns notion.databases.query
  */
-export const getDatabase = async (databaseId: string) => {
-  const response = await notion.databases.query({
+export const getAllPages = async (databaseId: string) => {
+  let results = []
+  let response = await notion.databases.query({
     database_id: databaseId,
-    filter: {
-      or: [
-        {
-          property: 'published',
-          checkbox: {
-            equals: true,
-          },
-        },
-      ],
-    },
+    filter: databaseFilter,
     sorts: [
       {
         property: 'published_at',
@@ -33,7 +39,43 @@ export const getDatabase = async (databaseId: string) => {
       },
     ],
   })
-  return response.results
+  results = [...response.results]
+  while (response.has_more) {
+    response = await notion.databases.query({
+      database_id: databaseId,
+      filter: databaseFilter,
+      sorts: [
+        {
+          property: 'published_at',
+          direction: 'descending',
+        },
+      ],
+    })
+    results = [...results, ...response.results]
+  }
+  return results
+}
+
+/**
+ * get notion database by id
+ *
+ * @param {string} databaseId
+ * @returns notion.databases.query
+ */
+export const getDatabase = async (databaseId: string, pageSize = 12, startCursor?: string) => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    page_size: pageSize,
+    start_cursor: startCursor,
+    filter: databaseFilter,
+    sorts: [
+      {
+        property: 'published_at',
+        direction: 'descending',
+      },
+    ],
+  })
+  return response
 }
 
 /**
@@ -54,8 +96,17 @@ export const getPost = async (pageId: string) => {
  * @returns notion.blocks.children.list
  */
 export const getBlocks = async (blockId: string) => {
-  const response = await notion.blocks.children.list({
+  let results = []
+  let response = await notion.blocks.children.list({
     block_id: blockId,
   })
-  return response.results
+  results = [...response.results]
+  while (response.has_more) {
+    response = await notion.blocks.children.list({
+      block_id: blockId,
+      start_cursor: response.next_cursor || undefined,
+    })
+    results = [...results, ...response.results]
+  }
+  return results
 }

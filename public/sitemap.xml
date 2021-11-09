@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://notion-nextjs-blog-livid.vercel.app</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-08T08:34:44.779Z</lastmod></url>
+<url><loc>https://notion-nextjs-blog-livid.vercel.app</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-09T02:10:50.646Z</lastmod></url>
+<url><loc>https://notion-nextjs-blog-livid.vercel.app/posts/bd343b28-4bcc-44cc-8455-a9c52156281f</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-09T02:10:50.646Z</lastmod></url>
+<url><loc>https://notion-nextjs-blog-livid.vercel.app/posts/a23b215e-23bd-4056-8fb1-2c6eb7dff12a</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-09T02:10:50.646Z</lastmod></url>
+<url><loc>https://notion-nextjs-blog-livid.vercel.app/posts/ed7c7f74-ae9d-4f85-89e7-ba47659c063f</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2021-11-09T02:10:50.646Z</lastmod></url>
 </urlset>

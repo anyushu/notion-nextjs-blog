@@ -17,10 +17,10 @@ const Hero = (): JSX.Element => {
     >
       <Container maxWidth="sm">
         <Typography component="h1" variant="h3" align="center" color="text.primary" gutterBottom>
-          Hero Section
+          Notion API Blog
         </Typography>
         <Typography variant="h6" align="center" color="text.secondary" paragraph>
-          あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。
+          JAMstack Blog with Notion API x Next.js
         </Typography>
       </Container>
     </Box>
