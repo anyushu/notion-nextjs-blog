@@ -1,7 +1,7 @@
 /**
  * site title
  */
-export const siteTitle = 'Blog with Notion API x Next.js'
+export const siteTitle = 'Notion API Blog'
 
 /**
  * next-seo defaultS config

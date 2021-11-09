@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import Layout from '../components/common/Layout'
 import Hero from '../components/page/home/Hero'
 import PostCard from '../components/page/post/PostCard'
-import { getDatabase, getAllPages } from '../lib/notion'
+import { getDatabase } from '../lib/notion'
 import type { Post } from '../models/notion'
 
 export const databaseId = process.env.NOTION_DATABASE_ID || ''

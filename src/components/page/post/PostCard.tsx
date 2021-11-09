@@ -3,6 +3,7 @@ import { blue } from '@mui/material/colors'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import { Twemoji } from 'react-emoji-render'
+import { getPostLink } from '../../../lib/blog-helpers'
 import type { Post } from '../../../models/notion'
 import { formatDate } from '../../../util/formatDate'
 
@@ -12,7 +13,7 @@ import { formatDate } from '../../../util/formatDate'
 const PostCard: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <Card>
-      <Link href={`/posts/${post.id}`} passHref>
+      <Link href={getPostLink(post.id)} passHref>
         <CardActionArea>
           <Box
             py={5}
