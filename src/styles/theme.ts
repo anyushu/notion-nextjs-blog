@@ -1,7 +1,13 @@
+import { blue } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 
 // Create a theme instance.
 const theme = createTheme({
+  palette: {
+    primary: {
+      main: blue[500],
+    },
+  },
   typography: {
     fontSize: 14,
     fontFamily: ['Noto Sans JP', 'sans-serif'].join(','),

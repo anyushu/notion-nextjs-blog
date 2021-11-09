@@ -5,11 +5,12 @@ import { ThemeProvider } from '@mui/material/styles'
 import { DefaultSeo } from 'next-seo'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import * as React from 'react'
+import React, { useState } from 'react'
 import TransitionProps from '../components/common/TransitionProps'
 import { defaultSeo } from '../next-seo.config'
 import createEmotionCache from '../styles/createEmotionCache'
 import theme from '../styles/theme'
+import { SearchContext } from 'context/searchContext'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -20,6 +21,7 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps): JSX.Element {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  const [search, setSearch] = useState<string>('')
   return (
     <>
       <Head>
@@ -30,7 +32,9 @@ export default function MyApp(props: MyAppProps): JSX.Element {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <TransitionProps />
-          <Component {...pageProps} />
+          <SearchContext.Provider value={{ search, setSearch }}>
+            <Component {...pageProps} />
+          </SearchContext.Provider>
         </ThemeProvider>
       </CacheProvider>
     </>
