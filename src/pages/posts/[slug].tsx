@@ -5,14 +5,14 @@ import { NextSeo } from 'next-seo'
 import { Twemoji } from 'react-emoji-render'
 import Layout from '../../components/common/Layout'
 import NotionBlock from '../../components/page/post/NotionBlock'
-import { getPost, getDatabase, getBlocks } from '../../lib/notion'
+import { getPost, getAllPages, getBlocks } from '../../lib/notion'
 import type { Post } from '../../models/notion'
 import { formatDate } from '../../util/formatDate'
 
 export const databaseId = process.env.NOTION_DATABASE_ID || ''
 
 export async function getStaticPaths() {
-  const database = await getDatabase(databaseId)
+  const database = await getAllPages(databaseId)
   const paths = database.map((post) => ({
     params: {
       slug: post.id,
