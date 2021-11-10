@@ -7,20 +7,12 @@ import PostCard from '../components/page/post/PostCard'
 import { getDatabase } from '../lib/notion'
 import type { Post } from '../models/notion'
 
-export const databaseId = process.env.NOTION_DATABASE_ID || ''
-// TODO: pagination
-// const PER_PAGE = 12
-
 export async function getStaticProps() {
-  // TODO: pagination
-  // const pageIndex = await getAllPages(databaseId)
-  const database = await getDatabase(databaseId)
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '')
   const revalidate = 60 * 60
 
   return {
     props: {
-      // TODO: pagination
-      // totalCounts: pageIndex.length,
       posts: database.results,
     },
     revalidate: revalidate,
@@ -50,10 +42,7 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
               display: 'flex',
               justifyContent: 'center',
             }}
-          >
-            {/* TODO: pagination
-            <Pagination color="primary" count={Math.ceil(totalCounts / PER_PAGE)} /> */}
-          </Box>
+          ></Box>
         </Container>
       </Layout>
     </>

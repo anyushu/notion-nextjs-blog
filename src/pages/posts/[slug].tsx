@@ -9,10 +9,8 @@ import { getPost, getAllPages, getBlocks } from '../../lib/notion'
 import type { Post } from '../../models/notion'
 import { formatDate } from '../../util/formatDate'
 
-export const databaseId = process.env.NOTION_DATABASE_ID || ''
-
 export async function getStaticPaths() {
-  const database = await getAllPages(databaseId)
+  const database = await getAllPages(process.env.NOTION_DATABASE_ID || '')
   const paths = database.map((post) => ({
     params: {
       slug: post.id,
@@ -62,12 +60,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
                 {postTitle}
               </Typography>
 
-              <Stack direction="row" alignItems="center" spacing={2} mt={2} mb={3}>
-                {post.created_time && (
-                  <Typography color="text.secondary" textAlign="right">
-                    <Twemoji svg text="✏️" /> {formatDate(post.created_time)}
-                  </Typography>
-                )}
+              <Stack direction="row" alignItems="center" mt={2} mb={3}>
                 {post.properties.tags.multi_select[0].name && (
                   <Chip
                     label={post.properties.tags.multi_select[0].name}
@@ -77,6 +70,16 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
                       lineHeight: '1rem',
                     }}
                   />
+                )}
+                {post.created_time && (
+                  <Typography color="text.secondary" textAlign="right" sx={{ marginLeft: 'auto' }}>
+                    <Twemoji svg text="✏️" /> {formatDate(post.created_time)}
+                  </Typography>
+                )}
+                {post.last_edited_time && (
+                  <Typography color="text.secondary" textAlign="right" ml={2}>
+                    <Twemoji svg text="🕓" /> {formatDate(post.last_edited_time)}
+                  </Typography>
                 )}
               </Stack>
 
