@@ -9,10 +9,8 @@ import { SearchContext } from '../../context/searchContext'
 import { getDatabase } from '../../lib/notion'
 import type { Post } from '../../models/notion'
 
-export const databaseId = process.env.NOTION_DATABASE_ID || ''
-
 export async function getStaticProps() {
-  const database = await getDatabase(databaseId)
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '')
   const revalidate = 60 * 60
 
   return {
