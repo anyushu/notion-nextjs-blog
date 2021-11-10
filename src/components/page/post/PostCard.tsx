@@ -13,7 +13,7 @@ import { formatDate } from '../../../util/formatDate'
 const PostCard: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <Card>
-      <Link href={getPostLink(post.id)} passHref>
+      <Link href="/posts/[slug]" as={getPostLink(post.id)} passHref>
         <CardActionArea>
           <Box
             py={5}
