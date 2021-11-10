@@ -16,6 +16,13 @@ export interface Post {
  * property of notion database content
  */
 export interface PostProperty {
+  author: {
+    type: 'created_by'
+    created_by: {
+      avatar_url?: string
+      name: string
+    }
+  }
   title: {
     type: 'title'
     title: [
