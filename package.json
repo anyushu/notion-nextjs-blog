@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@types/gtag.js": "^0.0.8",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
     "@types/react-syntax-highlighter": "^13.5.2",
