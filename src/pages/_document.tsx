@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/do
 import * as React from 'react'
 import createEmotionCache from '../styles/createEmotionCache'
 import theme from '../styles/theme'
+import { GTAG_ID } from 'lib/gtag'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -22,6 +23,17 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
             rel="stylesheet"
           />
+          {/* GA */}
+          {GTAG_ID && (
+            <>
+              <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`} />
+              <script
+                dangerouslySetInnerHTML={{
+                  __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', '${GTAG_ID}', {page_path: window.location.pathname,});`,
+                }}
+              />
+            </>
+          )}
         </Head>
         <body>
           <Main />
