@@ -145,7 +145,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
       return <Divider sx={{ margin: '1rem 0' }} />
 
     default:
-      console.log(block)
+      console.log('unsupported: ' + block.type)
       return <></>
   }
 }
