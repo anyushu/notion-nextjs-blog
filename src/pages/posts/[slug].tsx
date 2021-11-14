@@ -5,6 +5,7 @@ import { NextSeo } from 'next-seo'
 import { Twemoji } from 'react-emoji-render'
 import Layout from '../../components/common/Layout'
 import NotionBlock from '../../components/page/post/NotionBlock'
+import ShareButton from '../../components/page/post/ShareButton'
 import { getPost, getAllPages, getBlocks } from '../../lib/notion'
 import type { Post } from '../../models/notion'
 import { formatDate } from '../../util/formatDate'
@@ -91,6 +92,9 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
                   return <NotionBlock key={index} block={block} />
                 })}
               </Box>
+
+              {/* ShareButton */}
+              <ShareButton postTitle={postTitle} slug={post.id} />
             </Box>
           </Container>
         </Layout>
