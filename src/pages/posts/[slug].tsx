@@ -63,14 +63,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
 
               <Stack direction="row" alignItems="center" mt={2} mb={3}>
                 {post.properties.tags.multi_select[0].name && (
-                  <Chip
-                    label={post.properties.tags.multi_select[0].name}
-                    color="primary"
-                    size="small"
-                    sx={{
-                      lineHeight: '1rem',
-                    }}
-                  />
+                  <Chip label={post.properties.tags.multi_select[0].name} size="small" />
                 )}
                 {post.created_time && (
                   <Typography color="text.secondary" textAlign="right" sx={{ marginLeft: 'auto' }}>

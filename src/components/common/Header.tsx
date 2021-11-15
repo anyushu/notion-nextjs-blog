@@ -14,7 +14,7 @@ const Header: NextPage<{ props: Props }> = ({ props }) => {
     <AppBar position="relative">
       <Toolbar>
         <Link href="/" passHref>
-          <Typography component="h1" variant="h6" color="text.white" sx={{ cursor: 'pointer' }}>
+          <Typography component="h1" variant="h6" sx={{ cursor: 'pointer' }}>
             {title}
           </Typography>
         </Link>

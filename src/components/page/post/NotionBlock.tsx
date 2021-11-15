@@ -1,5 +1,6 @@
 import { Box, Typography, FormGroup, FormControlLabel, Checkbox, Divider } from '@mui/material'
 import { grey } from '@mui/material/colors'
+import { styled } from '@mui/material/styles'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
@@ -7,6 +8,21 @@ import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
+/**
+ * blockquote wrapper
+ */
+const BlockquoteBox = styled(Box)(({ theme }) => ({
+  margin: `${theme.spacing(3)} 0`,
+  padding: `${theme.spacing(2)} ${theme.spacing(2)}`,
+  fontStyle: 'italic',
+  borderLeft: `4px solid ${theme.palette.text.disabled}`,
+  backgroundColor: theme.palette.action.disabledBackground,
+  marginBottom: theme.spacing(1),
+}))
+
+/**
+ * Notion Block render
+ */
 const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
   const { type } = block
 
@@ -94,20 +110,9 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'quote':
       return (
-        <Box
-          component="blockquote"
-          mb={1}
-          sx={{
-            margin: '1rem 0',
-            padding: '0.5rem 1rem',
-            fontStyle: 'italic',
-            color: grey[800],
-            borderLeft: `4px solid ${grey[500]}`,
-            backgroundColor: `${grey.A100}`,
-          }}
-        >
-          {block.quote.text[0].plain_text}
-        </Box>
+        <BlockquoteBox component="blockquote">
+          <Typography>{block.quote.text[0].plain_text}</Typography>
+        </BlockquoteBox>
       )
 
     case 'image':
