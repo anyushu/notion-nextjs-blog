@@ -1,4 +1,24 @@
 /**
+ * notion database
+ */
+export interface Database {
+  properties: {
+    title?: [plain_text: string]
+    tags: {
+      multi_select: {
+        options?: [
+          {
+            color: string
+            id: string
+            name: string
+          },
+        ]
+      }
+    }
+  }
+}
+
+/**
  * notion database as table content
  */
 export interface Post {

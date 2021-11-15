@@ -1,15 +1,12 @@
 import SearchIcon from '@mui/icons-material/Search'
 import { Box, InputBase } from '@mui/material'
 import { alpha } from '@mui/material/styles'
-import { useRouter } from 'next/router'
 import React, { useCallback, useContext } from 'react'
 import { SearchContext } from '../../context/searchContext'
 import theme from 'styles/theme'
 
 const SearchInput = (): JSX.Element => {
   const { search, setSearch } = useContext(SearchContext)
-  const router = useRouter()
-
   const handleChangeKeyword = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { value } = e.currentTarget
@@ -18,26 +15,17 @@ const SearchInput = (): JSX.Element => {
     [setSearch],
   )
 
-  const handleKeyDownSearch = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      if (e.key === 'Enter') {
-        void router.push(`/search?keyword=${search}`)
-      }
-    },
-    [search, router],
-  )
-
   return (
     <Box
       sx={{
         position: 'relative',
+        display: 'inline-block',
+        width: '100%',
         borderRadius: '4px',
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
           backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
-        marginLeft: 'auto',
-        width: '45%',
         [theme.breakpoints.up('sm')]: {
           width: 'auto',
         },
@@ -60,10 +48,13 @@ const SearchInput = (): JSX.Element => {
         placeholder="Search"
         inputProps={{ 'aria-label': 'search' }}
         onChange={handleChangeKeyword}
-        onKeyDown={handleKeyDownSearch}
         value={search}
         sx={{
+          width: '100%',
           color: 'inherit',
+          [theme.breakpoints.up('sm')]: {
+            width: 'auto',
+          },
           '& .MuiInputBase-input': {
             padding: theme.spacing(1, 1, 1, 0),
             paddingLeft: `calc(1em + ${theme.spacing(4)})`,
