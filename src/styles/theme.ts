@@ -1,11 +1,15 @@
-import { blue } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
+    mode: 'dark',
+    background: {
+      default: '#282c34',
+      paper: '#282c34',
+    },
     primary: {
-      main: blue[500],
+      main: '#61afef',
     },
   },
   typography: {
@@ -40,6 +44,15 @@ const theme = createTheme({
     },
     body2: {
       lineHeight: 1.5,
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+        },
+      },
     },
   },
 })
