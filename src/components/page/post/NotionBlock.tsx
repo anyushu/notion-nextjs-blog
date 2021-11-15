@@ -21,6 +21,17 @@ const BlockquoteBox = styled(Box)(({ theme }) => ({
 }))
 
 /**
+ * image wrapper
+ */
+const ImageBox = styled(Box)(({ theme }) => ({
+  position: 'relative',
+  width: '100%',
+  height: 0,
+  paddingBottom: '56.25%',
+  marginBottom: theme.spacing(1),
+}))
+
+/**
  * Notion Block render
  */
 const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
@@ -120,12 +131,9 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
       const src = block.image.file.url as string
       const alt = block.image?.caption[0]?.plain_text || ''
       return (
-        <Box
-          mb={1}
-          sx={{ position: 'relative', width: '100%', height: 0, paddingBottom: '56.25%' }}
-        >
+        <ImageBox>
           <Image layout="fill" objectFit="contain" src={src} alt={alt} priority={true} />
-        </Box>
+        </ImageBox>
       )
 
     case 'embed':

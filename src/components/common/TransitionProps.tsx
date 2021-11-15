@@ -25,7 +25,7 @@ const TransitionProgress = (): JSX.Element | null => {
 
   return progress ? (
     <div style={{ zIndex: 999, position: 'fixed', top: 0, left: 0, right: 0 }}>
-      <LinearProgress />
+      <LinearProgress color="secondary" />
     </div>
   ) : null
 }
