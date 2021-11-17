@@ -11,8 +11,9 @@ import TransitionProps from '../components/common/TransitionProps'
 import { defaultSeo } from '../next-seo.config'
 import createEmotionCache from '../styles/createEmotionCache'
 import theme from '../styles/theme'
+import { GTM_ID } from '../util/gtm'
+import GoogleTagManager from 'components/common/GoogleTagManager'
 import { SearchContext } from 'context/searchContext'
-import { GTAG_ID, pageview } from 'lib/gtag'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
@@ -22,27 +23,13 @@ interface MyAppProps extends AppProps {
 }
 
 export default function MyApp(props: MyAppProps): JSX.Element {
-  const router = useRouter()
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
   const [search, setSearch] = useState<string>('')
 
-  useEffect(() => {
-    if (!GTAG_ID) return
-    const handleRouteChange = (url: string) => {
-      pageview(url)
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
-
   return (
     <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
       <DefaultSeo {...defaultSeo} />
+      {GTM_ID && <GoogleTagManager googleTagManagerId={GTM_ID} />}
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
