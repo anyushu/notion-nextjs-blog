@@ -48,4 +48,4 @@ notion-nextjs-blog
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT Licence](https://choosealicense.com/licenses/mit/)

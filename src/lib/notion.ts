@@ -1,4 +1,3 @@
-import { UrlWithStringQuery } from 'url'
 import { Client } from '@notionhq/client'
 
 /**
