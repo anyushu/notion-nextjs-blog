@@ -1,5 +1,4 @@
 import { Box, Typography, FormGroup, FormControlLabel, Checkbox, Divider } from '@mui/material'
-import { grey } from '@mui/material/colors'
 import { styled } from '@mui/material/styles'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
@@ -158,7 +157,6 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
       return <Divider sx={{ margin: '1rem 0' }} />
 
     default:
-      console.log('unsupported: ' + block.type)
       return <></>
   }
 }
