@@ -1,4 +1,5 @@
 import { Container, Box, Typography } from '@mui/material'
+import { siteTitle } from 'next-seo.config'
 
 const Hero = (): JSX.Element => {
   return (
@@ -17,10 +18,10 @@ const Hero = (): JSX.Element => {
     >
       <Container maxWidth="sm">
         <Typography component="h1" variant="h3" align="center" color="text.primary" gutterBottom>
-          Notion API Blog
+          {siteTitle}
         </Typography>
-        <Typography variant="h6" align="center" color="text.secondary" paragraph>
-          JAMstack Blog with Notion API x Next.js
+        <Typography align="center" color="text.secondary" paragraph>
+          {`フロントエンドエンジニア / PHP / Typescript / React`}
         </Typography>
       </Container>
     </Box>

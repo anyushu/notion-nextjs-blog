@@ -38,7 +38,24 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
   switch (type) {
     case 'paragraph':
-      return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
+      if (block.paragraph.text[0]?.href) {
+        return (
+          <Typography
+            mb={1}
+            sx={{
+              '& a': {
+                color: 'text.secondary',
+              },
+            }}
+          >
+            <a href={block.paragraph.text[0]?.href} target="_blank" rel="noreferrer">
+              <Twemoji svg text="📎" /> {block.paragraph.text[0].plain_text}
+            </a>
+          </Typography>
+        )
+      } else {
+        return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
+      }
 
     case 'heading_1':
       return (
@@ -137,7 +154,14 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'embed':
       return (
-        <Typography mb={1}>
+        <Typography
+          mb={1}
+          sx={{
+            '& a': {
+              color: 'text.secondary',
+            },
+          }}
+        >
           <a href={block.embed.url} target="_blank" rel="noreferrer">
             <Twemoji svg text="📎" /> {block.embed.url}
           </a>
@@ -146,7 +170,14 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'bookmark':
       return (
-        <Typography mb={1}>
+        <Typography
+          mb={1}
+          sx={{
+            '& a': {
+              color: 'text.secondary',
+            },
+          }}
+        >
           <a href={block.bookmark.url} target="_blank" rel="noreferrer">
             <Twemoji svg text="📎" /> {block.bookmark.url}
           </a>
