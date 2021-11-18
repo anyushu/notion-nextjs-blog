@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles'
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
@@ -39,7 +38,24 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
   switch (type) {
     case 'paragraph':
-      return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
+      if (block.paragraph.text[0]?.href) {
+        return (
+          <Typography
+            mb={1}
+            sx={{
+              '& a': {
+                color: 'text.secondary',
+              },
+            }}
+          >
+            <a href={block.paragraph.text[0]?.href} target="_blank" rel="noreferrer">
+              <Twemoji svg text="📎" /> {block.paragraph.text[0].plain_text}
+            </a>
+          </Typography>
+        )
+      } else {
+        return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
+      }
 
     case 'heading_1':
       return (
@@ -146,9 +162,9 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
             },
           }}
         >
-          <Link href={block.embed.url} passHref>
+          <a href={block.embed.url} target="_blank" rel="noreferrer">
             <Twemoji svg text="📎" /> {block.embed.url}
-          </Link>
+          </a>
         </Typography>
       )
 
@@ -162,9 +178,9 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
             },
           }}
         >
-          <Link href={block.bookmark.url} passHref>
+          <a href={block.bookmark.url} target="_blank" rel="noreferrer">
             <Twemoji svg text="📎" /> {block.bookmark.url}
-          </Link>
+          </a>
         </Typography>
       )
 
