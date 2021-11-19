@@ -21,7 +21,7 @@ const Footer: NextPage<{ props: Props }> = ({ props }) => {
             },
           }}
         >
-          <Link href="https://github.com/lamp-suzuki/notion-nextjs-blog">SourceCode</Link>
+          <Link href="https://github.com/anyushu/notion-nextjs-blog">SourceCode</Link>
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">
           {'©'} {new Date().getFullYear()} {title} {'.'}
