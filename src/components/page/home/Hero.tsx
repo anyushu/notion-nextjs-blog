@@ -1,4 +1,5 @@
 import { Container, Box, Typography } from '@mui/material'
+import { jpParse } from '../../../util/japaneseParser'
 import { siteTitle } from 'next-seo.config'
 
 const Hero = (): JSX.Element => {
@@ -18,10 +19,10 @@ const Hero = (): JSX.Element => {
     >
       <Container maxWidth="sm">
         <Typography component="h1" variant="h3" align="center" color="text.primary" gutterBottom>
-          {siteTitle}
+          {jpParse(siteTitle)}
         </Typography>
         <Typography align="center" color="text.secondary" paragraph>
-          {`フロントエンドエンジニア / PHP / Typescript / React`}
+          {jpParse(`フロントエンドエンジニア。サッカーと映画が好きです。`)}
         </Typography>
       </Container>
     </Box>

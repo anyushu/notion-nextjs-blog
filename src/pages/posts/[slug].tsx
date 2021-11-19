@@ -9,6 +9,7 @@ import ShareButton from '../../components/page/post/ShareButton'
 import { getPost, getAllPages, getBlocks } from '../../lib/notion'
 import type { Post } from '../../models/notion'
 import { formatDate } from '../../util/formatDate'
+import { jpParse } from '../../util/japaneseParser'
 
 export async function getStaticPaths() {
   const database = await getAllPages(process.env.NOTION_DATABASE_ID || '')
@@ -58,7 +59,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
             >
               {/* blog title */}
               <Typography component="h1" variant="h4">
-                {postTitle}
+                {jpParse(postTitle)}
               </Typography>
 
               <Stack direction="row" alignItems="center" mt={2} mb={3}>

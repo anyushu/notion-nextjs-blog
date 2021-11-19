@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { jpParse } from '../../../util/japaneseParser'
 
 /**
  * blockquote wrapper
@@ -60,21 +61,21 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'heading_1':
       return (
         <Typography component="h1" variant="h4" mt={3} mb={2}>
-          {block.heading_1.text[0].plain_text}
+          {jpParse(block.heading_1.text[0].plain_text)}
         </Typography>
       )
 
     case 'heading_2':
       return (
         <Typography component="h2" variant="h5" mt={3} mb={2}>
-          {block.heading_2.text[0].plain_text}
+          {jpParse(block.heading_2.text[0].plain_text)}
         </Typography>
       )
 
     case 'heading_3':
       return (
         <Typography component="h3" variant="h6" mt={2} mb={1}>
-          {block.heading_3.text[0].plain_text}
+          {jpParse(block.heading_3.text[0].plain_text)}
         </Typography>
       )
 
