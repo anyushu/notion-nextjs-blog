@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   const post = await getPost(context?.params?.slug as string)
   const blocks = await getBlocks(context?.params?.slug as string)
-  const revalidate = 60 * 60
+  const revalidate = 60
 
   return {
     props: {

@@ -13,7 +13,7 @@ import { SearchContext } from 'context/searchContext'
 export async function getStaticProps() {
   const database = await getDatabase(process.env.NOTION_DATABASE_ID || '')
   const databaseProperties = await getDatabaseProperties(process.env.NOTION_DATABASE_ID || '')
-  const revalidate = 60 * 60
+  const revalidate = 60
 
   return {
     props: {
