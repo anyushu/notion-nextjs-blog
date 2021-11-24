@@ -52,7 +52,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
           <Container maxWidth="md">
             <Box
               component="article"
-              py={4}
+              py={6}
               sx={{
                 wordBreak: 'break-all',
               }}
