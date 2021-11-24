@@ -6,9 +6,12 @@
     "build": "next build && next-sitemap",
     "postbuild": "next-sitemap",
     "start": "next start",
+    "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "next lint --dir src",
     "lint:fix": "next lint --dir src --fix",
-    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
+    "test-all": "npx yarn-run-all lint type-check format lint:fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -39,6 +42,8 @@
     "eslint-config-next": "12.0.2",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "next-sitemap": "^1.6.203",
     "prettier": "^2.4.1",
     "typescript": "4.4.4"
