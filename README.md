@@ -20,6 +20,8 @@ Now that NotionAPI has been released, I've created a blog site using Next.js!
 
 ```
 notion-nextjs-blog
+├─ .husky
+├─ public
 ├─ src
 │  ├─ components
 │  │  ├─ common
@@ -30,8 +32,12 @@ notion-nextjs-blog
 │  ├─ pagesv
 │  ├─ styles
 │  └─ util
+├─ .babelrc
 ├─ .eslintrc.json
+├─ .node-version
 ├─ .prettierrc.json
+├─ lint-staged.config.js
+├─ next-env.d.ts
 ├─ next-sitemap.js
 ├─ next.config.js
 ├─ tsconfig.json
