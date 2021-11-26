@@ -46,7 +46,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
       <>
         <NextSeo
           title={`${postTitle}`}
-          description={post.properties.description.rich_text[0].plain_text}
+          description={post.properties?.description?.rich_text[0]?.plain_text || ''}
         />
         <Layout>
           <Container maxWidth="md">

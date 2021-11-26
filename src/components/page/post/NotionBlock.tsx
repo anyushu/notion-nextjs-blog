@@ -6,7 +6,10 @@ import Image from 'next/image'
 import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import theme from '../../../styles/theme'
 import { jpParse } from '../../../util/japaneseParser'
+import CustomAccordion from 'components/common/Accordion'
+import { RichTextItem } from 'models/notion'
 
 /**
  * blockquote wrapper
@@ -31,50 +34,88 @@ const ImageBox = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }))
 
+const RichText: NextPage<{ texts: Array<RichTextItem> }> = ({ texts }) => {
+  return (
+    <Typography mb={1}>
+      {texts.map((text, index) => {
+        return (
+          <Box
+            component="span"
+            key={index}
+            sx={{
+              fontWeight: text.annotations?.bold ? 'bold' : 'normal',
+              fontStyle: text.annotations?.italic ? 'italic' : 'normal',
+              textDecoration: text.annotations?.underline
+                ? 'underline'
+                : text.annotations?.strikethrough
+                ? 'line-through'
+                : 'none',
+            }}
+          >
+            {text.annotations?.code ? (
+              <Box
+                component="code"
+                sx={{
+                  fontSize: '90%',
+                  paddingLeft: theme.spacing(0.5),
+                  paddingRight: theme.spacing(0.5),
+                  borderRadius: theme.spacing(0.5),
+                  backgroundColor: theme.palette.action.disabledBackground,
+                  letterSpacing: 'normal',
+                }}
+              >
+                {text.plain_text}
+              </Box>
+            ) : text.href ? (
+              <Box
+                component="span"
+                sx={{
+                  '& a': {
+                    color: 'text.secondary',
+                  },
+                }}
+              >
+                <a href={text.href} target="_blank" rel="noreferrer">
+                  {text.plain_text}
+                </a>
+              </Box>
+            ) : (
+              text.plain_text
+            )}
+          </Box>
+        )
+      })}
+    </Typography>
+  )
+}
+
 /**
  * Notion Block render
  */
 const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
-  const { type } = block
+  const { type, id } = block
 
   switch (type) {
     case 'paragraph':
-      if (block.paragraph.text[0]?.href) {
-        return (
-          <Typography
-            mb={1}
-            sx={{
-              '& a': {
-                color: 'text.secondary',
-              },
-            }}
-          >
-            <a href={block.paragraph.text[0]?.href} target="_blank" rel="noreferrer">
-              <Twemoji svg text="📎" /> {block.paragraph.text[0].plain_text}
-            </a>
-          </Typography>
-        )
-      } else {
-        return <Typography mb={1}>{block.paragraph.text[0].plain_text}</Typography>
-      }
+      return <RichText texts={block.paragraph.text as Array<RichTextItem>} />
 
     case 'heading_1':
       return (
-        <Typography component="h1" variant="h4" mt={3} mb={2}>
+        <Typography id={id} component="h1" variant="h4" mt={3} mb={2}>
           {jpParse(block.heading_1.text[0].plain_text)}
         </Typography>
       )
 
     case 'heading_2':
       return (
-        <Typography component="h2" variant="h5" mt={3} mb={2}>
+        <Typography id={id} component="h2" variant="h5" mt={3} mb={2}>
           {jpParse(block.heading_2.text[0].plain_text)}
         </Typography>
       )
 
     case 'heading_3':
       return (
-        <Typography component="h3" variant="h6" mt={2} mb={1}>
+        <Typography id={id} component="h3" variant="h6" mt={2} mb={1}>
           {jpParse(block.heading_3.text[0].plain_text)}
         </Typography>
       )
@@ -82,6 +123,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'bulleted_list_item':
       return (
         <li
+          id={id}
           style={{
             marginLeft: '1rem',
             marginBottom: '0.5rem',
@@ -94,6 +136,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'numbered_list_item':
       return (
         <li
+          id={id}
           style={{
             marginLeft: '1rem',
             marginBottom: '0.5rem',
@@ -105,12 +148,12 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'to_do':
       const checked = block.to_do.checked ? (
-        <Checkbox readOnly={true} defaultChecked />
+        <Checkbox id={id} readOnly={true} defaultChecked />
       ) : (
-        <Checkbox readOnly={true} />
+        <Checkbox id={id} readOnly={true} />
       )
       return (
-        <FormGroup>
+        <FormGroup id={id}>
           <FormControlLabel
             sx={{
               pointerEvents: 'none',
@@ -125,6 +168,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
       const language = block.code.language
       return (
         <SyntaxHighlighter
+          id={id}
           language={language}
           style={ocean}
           customStyle={{
@@ -138,7 +182,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'quote':
       return (
-        <BlockquoteBox component="blockquote">
+        <BlockquoteBox id={id} component="blockquote">
           <Typography>{block.quote.text[0].plain_text}</Typography>
         </BlockquoteBox>
       )
@@ -148,7 +192,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
       const src = block.image.file.url as string
       const alt = block.image?.caption[0]?.plain_text || ''
       return (
-        <ImageBox>
+        <ImageBox id={id}>
           <Image layout="fill" objectFit="contain" src={src} alt={alt} priority={true} />
         </ImageBox>
       )
@@ -156,6 +200,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'embed':
       return (
         <Typography
+          id={id}
           mb={1}
           sx={{
             '& a': {
@@ -172,6 +217,7 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'bookmark':
       return (
         <Typography
+          id={id}
           mb={1}
           sx={{
             '& a': {
@@ -185,11 +231,25 @@ const NotionBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
         </Typography>
       )
 
+    case 'toggle':
+      return (
+        <CustomAccordion
+          props={{
+            id: id,
+            title: block.toggle.text[0].plain_text,
+          }}
+        />
+      )
+
     case 'divider':
-      return <Divider sx={{ margin: '1rem 0' }} />
+      return <Divider id={id} sx={{ margin: '1rem 0' }} />
 
     default:
-      return <></>
+      return (
+        <Box id={id} my={2}>
+          this block unsupported type: <b>{block.type}</b>
+        </Box>
+      )
   }
 }
 
