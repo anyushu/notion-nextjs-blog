@@ -1,4 +1,5 @@
-import { AppBar, Toolbar, Typography } from '@mui/material'
+import { Twitter, GitHub } from '@mui/icons-material'
+import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 
@@ -17,6 +18,18 @@ const Header: NextPage<{ props: Props }> = ({ props }) => {
             {title}
           </Typography>
         </Link>
+        <Box ml="auto" display="flex">
+          <Link href={process.env.NEXT_PUBLIC_TWITTER_URL || 'https://github.com/'} passHref>
+            <IconButton>
+              <GitHub />
+            </IconButton>
+          </Link>
+          <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || 'https://twitter.com/'} passHref>
+            <IconButton>
+              <Twitter />
+            </IconButton>
+          </Link>
+        </Box>
       </Toolbar>
     </AppBar>
   )
