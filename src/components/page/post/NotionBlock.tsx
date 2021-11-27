@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import theme from '../../../styles/theme'
 import { jpParse } from '../../../util/japaneseParser'
+import RichText from './RichText'
 import CustomAccordion from 'components/common/Accordion'
 import { RichTextItem } from 'models/notion'
 
@@ -33,61 +33,6 @@ const ImageBox = styled(Box)(({ theme }) => ({
   paddingBottom: '56.25%',
   marginBottom: theme.spacing(1),
 }))
-
-const RichText: NextPage<{ texts: Array<RichTextItem> }> = ({ texts }) => {
-  return (
-    <Typography mb={1}>
-      {texts.map((text, index) => {
-        return (
-          <Box
-            component="span"
-            key={index}
-            sx={{
-              fontWeight: text.annotations?.bold ? 'bold' : 'normal',
-              fontStyle: text.annotations?.italic ? 'italic' : 'normal',
-              textDecoration: text.annotations?.underline
-                ? 'underline'
-                : text.annotations?.strikethrough
-                ? 'line-through'
-                : 'none',
-            }}
-          >
-            {text.annotations?.code ? (
-              <Box
-                component="code"
-                sx={{
-                  fontSize: '90%',
-                  paddingLeft: theme.spacing(0.5),
-                  paddingRight: theme.spacing(0.5),
-                  borderRadius: theme.spacing(0.5),
-                  backgroundColor: theme.palette.action.disabledBackground,
-                  letterSpacing: 'normal',
-                }}
-              >
-                {text.plain_text}
-              </Box>
-            ) : text.href ? (
-              <Box
-                component="span"
-                sx={{
-                  '& a': {
-                    color: 'text.secondary',
-                  },
-                }}
-              >
-                <a href={text.href} target="_blank" rel="noreferrer">
-                  {text.plain_text}
-                </a>
-              </Box>
-            ) : (
-              text.plain_text
-            )}
-          </Box>
-        )
-      })}
-    </Typography>
-  )
-}
 
 /**
  * Notion Block render

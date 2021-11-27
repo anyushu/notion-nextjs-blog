@@ -41,7 +41,7 @@ const Home: NextPage<{ posts: Post[]; databaseProperties: Database }> = ({
 
   return (
     <>
-      <NextSeo description="JAMstack Blog with Notion API x Next.js" />
+      <NextSeo description="フロントエンドエンジニア。サッカーと映画が好きです。" />
       <Layout>
         <Hero />
         <Container>
