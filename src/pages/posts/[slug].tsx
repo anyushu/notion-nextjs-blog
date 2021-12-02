@@ -6,13 +6,15 @@ import { Twemoji } from 'react-emoji-render'
 import Layout from '../../components/common/Layout'
 import NotionBlock from '../../components/page/post/NotionBlock'
 import ShareButton from '../../components/page/post/ShareButton'
-import { getPost, getAllPages, getBlocks } from '../../lib/notion'
+import getBlocks from '../../lib/notion/getBlocks'
+import getPage from '../../lib/notion/getPage'
 import type { Post } from '../../models/notion'
 import { formatDate } from '../../util/formatDate'
 import { jpParse } from '../../util/japaneseParser'
+import getPageIndex from 'lib/notion/getPageIndex'
 
 export async function getStaticPaths() {
-  const database = await getAllPages(process.env.NOTION_DATABASE_ID || '')
+  const database = await getPageIndex(process.env.NOTION_DATABASE_ID || '')
   const paths = database.map((post) => ({
     params: {
       slug: post.id,
@@ -23,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const post = await getPost(context?.params?.slug as string)
+  const post = await getPage(context?.params?.slug as string)
   const blocks = await getBlocks(context?.params?.slug as string)
   const revalidate = 60
 
