@@ -6,12 +6,12 @@ import Layout from '../components/common/Layout'
 import SearchInput from '../components/common/SearchInput'
 import Hero from '../components/page/home/Hero'
 import PostCard from '../components/page/post/PostCard'
-import { getDatabase, getDatabaseProperties } from '../lib/notion'
+import { getDatabaseChildren, getDatabaseProperties } from '../lib/notion/getDatabase'
 import type { Database, Post } from '../models/notion'
 import { SearchContext } from 'context/searchContext'
 
 export async function getStaticProps() {
-  const database = await getDatabase(process.env.NOTION_DATABASE_ID || '')
+  const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
   const databaseProperties = await getDatabaseProperties(process.env.NOTION_DATABASE_ID || '')
   const revalidate = 60
 
