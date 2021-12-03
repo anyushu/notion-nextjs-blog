@@ -13,14 +13,12 @@ import { SearchContext } from 'context/searchContext'
 export async function getStaticProps() {
   const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
   const databaseProperties = await getDatabaseProperties(process.env.NOTION_DATABASE_ID || '')
-  const revalidate = 60
 
   return {
     props: {
       posts: database.results,
       databaseProperties: databaseProperties,
     },
-    revalidate: revalidate,
   }
 }
 

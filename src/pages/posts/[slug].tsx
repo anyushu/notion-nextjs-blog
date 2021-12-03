@@ -21,20 +21,18 @@ export async function getStaticPaths() {
     },
   }))
 
-  return { paths, fallback: 'blocking' }
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const post = await getPage(context?.params?.slug as string)
   const blocks = await getBlocks(context?.params?.slug as string)
-  const revalidate = 60
 
   return {
     props: {
       post,
       blocks,
     },
-    revalidate: revalidate,
   }
 }
 
