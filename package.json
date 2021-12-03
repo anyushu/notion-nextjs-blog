@@ -20,7 +20,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/material": "^5.2.0",
     "@notionhq/client": "^0.4.4",
-    "budoux": "^0.0.1",
+    "budoux": "^0.0.3",
     "html-react-parser": "^1.4.0",
     "next": "12.0.4",
     "next-seo": "^4.28.1",
@@ -33,8 +33,8 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@types/gtag.js": "^0.0.8",
-    "@types/node": "16.11.10",
-    "@types/react": "17.0.36",
+    "@types/node": "16.11.11",
+    "@types/react": "17.0.37",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
@@ -46,6 +46,6 @@
     "lint-staged": "^12.1.2",
     "next-sitemap": "^1.6.203",
     "prettier": "^2.4.1",
-    "typescript": "4.5.2"
+    "typescript": "^4.4.4"
   }
 }
