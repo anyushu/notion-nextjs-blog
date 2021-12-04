@@ -1,7 +1,7 @@
 /**
  * notion database
  */
-export interface Database {
+export type Database = {
   properties: {
     title?: [plain_text: string]
     tags: {
@@ -21,7 +21,7 @@ export interface Database {
 /**
  * notion database as table content
  */
-export interface Post {
+export type Post = {
   id: string
   icon: {
     type: string
@@ -35,7 +35,7 @@ export interface Post {
 /**
  * property of notion database content
  */
-export interface PostProperty {
+export type PostProperty = {
   author: {
     type: 'created_by'
     created_by: {
@@ -75,7 +75,7 @@ export interface PostProperty {
 /**
  * property of notion rich text
  */
-export interface RichTextItem {
+export type RichTextItem = {
   text: {
     content: string
     link?: {

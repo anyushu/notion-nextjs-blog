@@ -1,16 +1,17 @@
+import type {
+  GetDatabaseResponse,
+  QueryDatabaseResponse,
+} from '@notionhq/client/build/src/api-endpoints'
 import { notion, databaseFilter } from './client'
 
 /**
  * get notion database by id
- *
- * @param {string} databaseId
- * @returns notion.databases.query
  */
 export const getDatabaseChildren = async (
   databaseId: string,
   pageSize = 12,
   startCursor?: string,
-) => {
+): Promise<QueryDatabaseResponse> => {
   const response = await notion.databases.query({
     database_id: databaseId,
     page_size: pageSize,
@@ -28,11 +29,8 @@ export const getDatabaseChildren = async (
 
 /**
  * get notion database by id
- *
- * @param {string} databaseId
- * @returns notion.databases.query
  */
-export const getDatabaseProperties = async (databaseId: string) => {
+export const getDatabaseProperties = async (databaseId: string): Promise<GetDatabaseResponse> => {
   const response = await notion.databases.retrieve({
     database_id: databaseId,
   })
