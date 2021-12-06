@@ -1,16 +1,8 @@
-import createEmotionServer from '@emotion/server/create-instance'
-import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
-import * as React from 'react'
-import createEmotionCache from '../styles/createEmotionCache'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 import theme from '../styles/theme'
 import { GTM_ID } from '../util/gtm'
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return initialProps
-  }
-
   render() {
     return (
       <Html lang="ja">
@@ -43,33 +35,3 @@ class MyDocument extends Document {
 }
 
 export default MyDocument
-
-// `getInitialProps` belongs to `_document` (instead of `_app`),
-// it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx) => {
-  const originalRenderPage = ctx.renderPage
-  const cache = createEmotionCache()
-  const { extractCriticalToChunks } = createEmotionServer(cache)
-
-  ctx.renderPage = () =>
-    originalRenderPage({
-      // eslint-disable-next-line react/display-name
-      enhanceApp: (App: any) => (props) => <App emotionCache={cache} {...props} />,
-    })
-
-  const initialProps = await Document.getInitialProps(ctx)
-  const emotionStyles = extractCriticalToChunks(initialProps.html)
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
-    <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
-      key={style.key}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: style.css }}
-    />
-  ))
-
-  return {
-    ...initialProps,
-    styles: [...React.Children.toArray(initialProps.styles), ...emotionStyleTags],
-  }
-}

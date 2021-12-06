@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://notion-nextjs-blog-livid.vercel.app
+Host: https://anyushu.com
 
 # Sitemaps
-Sitemap: https://notion-nextjs-blog-livid.vercel.app/sitemap.xml
+Sitemap: https://anyushu.com/sitemap.xml
