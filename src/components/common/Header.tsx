@@ -19,12 +19,12 @@ const Header: NextPage<{ props: Props }> = ({ props }) => {
           </Typography>
         </Link>
         <Box ml="auto" display="flex">
-          <Link href={process.env.NEXT_PUBLIC_TWITTER_URL || 'https://github.com/'} passHref>
+          <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/'} passHref>
             <IconButton>
               <GitHub />
             </IconButton>
           </Link>
-          <Link href={process.env.NEXT_PUBLIC_GITHUB_URL || 'https://twitter.com/'} passHref>
+          <Link href={process.env.NEXT_PUBLIC_TWITTER_URL || 'https://twitter.com/'} passHref>
             <IconButton>
               <Twitter />
             </IconButton>
