@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import theme from '../styles/theme'
 import { GTM_ID } from '../util/gtm'
 
 class MyDocument extends Document {
@@ -7,7 +6,6 @@ class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
-          <meta name="theme-color" content={theme.palette.background.default} />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link
