@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo'
-import Link from 'next/link'
 import Button from 'components/atoms/Button'
 import Container from 'components/atoms/Container'
 import { siteTitle } from 'next-seo.config'

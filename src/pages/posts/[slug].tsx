@@ -1,6 +1,7 @@
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
+import Button from 'components/atoms/Button'
 import Container from 'components/atoms/Container'
 import PostContent from 'components/organisms/post/PostContent'
 import PostHeader from 'components/organisms/post/PostHeader'
@@ -51,6 +52,9 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
             <PostHeader post={post} />
             <div className="md:px-24 mt-12 md:mt-24 tracking-wider leading-loose">
               <PostContent blocks={blocks} />
+            </div>
+            <div className="mt-12 tracking-widest text-center">
+              <Button href="/">Back Home</Button>
             </div>
           </Container>
         </Layout>

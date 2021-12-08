@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode
 }
 
-export const Button = ({ href, children }: Props) => {
+const Button = ({ href, children }: Props) => {
   if (href) {
     return (
       <Link href={href}>

@@ -5,9 +5,7 @@ const Hero = () => {
   return (
     <Container className="container px-3 md:px-0 mx-auto mb-12 md:mb-24">
       <Heading h={2} className="tracking-wider leading-relaxed">
-        I am a front-end engineer.
-        <br />
-        <small>PHP / Laravel / Next.js / Typescript</small>
+        Hi, I am a front-end engineer.
       </Heading>
     </Container>
   )
