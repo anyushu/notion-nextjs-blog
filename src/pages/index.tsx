@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import { useCallback, useContext, useState } from 'react'
 import { getDatabaseChildren, getDatabaseProperties } from '../lib/notion/getDatabase'
-import type { Database, Post } from '../models/notion'
-import { SearchContext } from 'context/searchContext'
+import type { Post } from '../models/notion'
+import Heading from 'components/atoms/Heading'
+import Posts from 'components/molecules/Posts'
+import Hero from 'components/organisms/Hero'
+import Layout from 'components/templates/Layout'
 
 export async function getStaticProps() {
   const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
@@ -17,24 +19,20 @@ export async function getStaticProps() {
   }
 }
 
-const Home: NextPage<{ posts: Post[]; databaseProperties: Database }> = ({
-  posts,
-  databaseProperties,
-}) => {
-  const postTags = databaseProperties.properties.tags.multi_select.options || []
-  const { search } = useContext(SearchContext)
-  const [tagFilter, setTagFilter] = useState<string>('')
-  const handleClickTag = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      const clickTag = e.currentTarget.textContent
-      setTagFilter(clickTag == tagFilter ? '' : e.currentTarget.textContent || '')
-    },
-    [tagFilter],
-  )
-
+const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (
     <>
       <NextSeo description="フロントエンドエンジニア。サッカーと映画が好きです。" />
+
+      <Layout>
+        <Hero />
+        <div className="container px-3 md:px-0 mx-auto">
+          <Heading h={2} className="mb-6 tracking-wider">
+            Latest posts
+          </Heading>
+          <Posts posts={posts} />
+        </div>
+      </Layout>
     </>
   )
 }

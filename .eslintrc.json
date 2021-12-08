@@ -5,7 +5,8 @@
     "prettier",
     "plugin:import/recommended",
     "plugin:import/warnings",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "off",
