@@ -5,17 +5,15 @@ import Heading from 'components/atoms/Heading'
 import Posts from 'components/molecules/Posts'
 import Hero from 'components/organisms/Hero'
 import Layout from 'components/templates/Layout'
-import { getDatabaseChildren, getDatabaseProperties } from 'lib/notion/getDatabase'
+import { getDatabaseChildren } from 'lib/notion/getDatabase'
 import type { Post } from 'models/notion'
 
 export async function getStaticProps() {
   const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
-  const databaseProperties = await getDatabaseProperties(process.env.NOTION_DATABASE_ID || '')
 
   return {
     props: {
       posts: database.results,
-      databaseProperties: databaseProperties,
     },
   }
 }
