@@ -1,17 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import theme from '../styles/theme'
-import { GTM_ID } from '../util/gtm'
+import { GTM_ID } from 'util/gtm'
 
 class MyDocument extends Document {
   render() {
     return (
       <Html lang="ja">
         <Head>
-          <meta name="theme-color" content={theme.palette.background.default} />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Red+Hat+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
             rel="stylesheet"
           />
         </Head>
