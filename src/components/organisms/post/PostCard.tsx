@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Twemoji } from 'react-emoji-render'
-import { getPostLink } from '../../lib/blog-helpers'
-import type { Post } from '../../models/notion'
-import { formatDate } from '../../util/formatDate'
+import { getPostLink } from 'lib/blog-helpers'
+import type { Post } from 'models/notion'
+import { formatDate } from 'util/formatDate'
 
 type Props = {
   post: Post

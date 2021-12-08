@@ -9,11 +9,13 @@ const headMenus = [
 
 const Header = () => {
   return (
-    <header id="header" className="p-3 md:py-24 md:px-0 mb-6 md:mb-0">
+    <header id="header" className="p-3 md:py-24 md:px-0 mb-12 md:mb-0">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           {/* logo */}
-          <h1 className="text-lg font-bold tracking-widest">{siteTitle}</h1>
+          <h1 className="text-lg font-bold tracking-widest">
+            <Link href="/">{siteTitle}</Link>
+          </h1>
 
           {/* menus */}
           <nav className="flex">

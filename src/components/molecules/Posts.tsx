@@ -1,5 +1,5 @@
-import type { Post } from '../../models/notion'
-import PostCard from '../organisms/PostCard'
+import PostCard from 'components/organisms/post/PostCard'
+import type { Post } from 'models/notion'
 
 type Props = {
   posts: Post[]

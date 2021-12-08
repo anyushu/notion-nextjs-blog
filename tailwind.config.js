@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
@@ -16,6 +19,12 @@ module.exports = {
         100: '#F4F4F4',
       },
       errors: '#E10000',
+      indigo: colors.indigo,
+      red: colors.red,
+      yellow: colors.yellow,
+      blue: colors.blue,
+      green: colors.green,
+      purple: colors.purple,
     },
     extend: {
       spacing: {
@@ -24,7 +33,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      textColor: ['active'],
+    },
   },
   plugins: [],
 }
