@@ -50,7 +50,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
         <Layout>
           <Container>
             <PostHeader post={post} />
-            <div className="md:px-24 mt-12 md:mt-24 tracking-wider leading-loose">
+            <div className="md:px-24 mt-12 md:mt-24 tracking-wider leading-relaxed">
               <PostContent blocks={blocks} />
             </div>
             <div className="mt-12 tracking-widest text-center">

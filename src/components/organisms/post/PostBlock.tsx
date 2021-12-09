@@ -1,6 +1,7 @@
 import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import Heading from 'components/atoms/Heading'
@@ -64,6 +65,8 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
             padding: '0.75rem',
             margin: '1rem 0',
             lineHeight: 1.5,
+            letterSpacing: 0,
+            fontSize: '90%',
           }}
         >
           {block.code.text[0].plain_text}
@@ -73,8 +76,22 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
     case 'quote':
       return (
         <blockquote id={id} className="py-2 px-3 my-3 bg-gray-100 border-l-2">
-          <p>{block.quote.text[0].plain_text}</p>
+          <p className="whitespace-pre-wrap">{block.quote.text[0].plain_text}</p>
         </blockquote>
+      )
+
+    case 'to_do':
+      return (
+        <p className="flex items-center ml-2">
+          <input
+            id={id}
+            className="mr-3"
+            type="checkbox"
+            checked={block.to_do.checked ? true : false}
+            readOnly={true}
+          />
+          <label htmlFor={id}>{block.to_do.text[0].plain_text}</label>
+        </p>
       )
 
     case 'image':
@@ -113,6 +130,22 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
             {block.bookmark.url}
           </a>
         </p>
+      )
+
+    case 'callout':
+      return (
+        <div className="flex items-start p-3 bg-gray-100 rounded">
+          <Twemoji
+            className="block mt-1 mr-3 w-5 h-5"
+            onlyEmojiClassName="twemoji"
+            svg
+            // @ts-ignore
+            text={block.callout.icon?.emoji || '☕'}
+          />
+          <div>
+            <RichText className="mb-0" texts={block.callout.text as Array<RichTextItem>} />
+          </div>
+        </div>
       )
 
     case 'divider':

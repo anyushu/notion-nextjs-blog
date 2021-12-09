@@ -13,7 +13,7 @@ const PostCard = ({ post }: Props) => {
     <Link href="/posts/[slug]" as={getPostLink(post.id)} passHref>
       <a className="hover:opacity-75 transition-all">
         {/* thumbnail */}
-        <figure className="relative pt-per-t-46 h-0 bg-gray-100">
+        <figure className="relative pt-[46.29%] h-0 bg-gray-100">
           <Twemoji
             className="absolute inset-0 m-auto w-16 h-16 text-7xl"
             onlyEmojiClassName="twemoji"
