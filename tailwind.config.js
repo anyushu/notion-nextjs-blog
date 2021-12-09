@@ -8,6 +8,16 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Red Hat Display', 'Noto Sans JP', 'sans-serif'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace',
+      ],
     },
     colors: {
       black: '#000',

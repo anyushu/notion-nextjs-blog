@@ -1,9 +1,14 @@
 import { NextPage } from 'next'
 import { RichTextItem } from 'models/notion'
 
-const RichText: NextPage<{ texts: Array<RichTextItem> }> = ({ texts }) => {
+type Porps = {
+  className?: string
+  texts: Array<RichTextItem>
+}
+
+const RichText: NextPage<Porps> = ({ className, texts }) => {
   return (
-    <p className="mb-3">
+    <p className={`mb-3 whitespace-pre-wrap ${className}`}>
       {texts.map((text, index) => {
         let textColor = 'text-current'
         switch (text.annotations?.color) {
@@ -48,7 +53,7 @@ const RichText: NextPage<{ texts: Array<RichTextItem> }> = ({ texts }) => {
             }`}
           >
             {text.annotations?.code ? (
-              <code className="py-1 px-2 text-sm tracking-normal bg-gray-100 rounded">
+              <code className="py-1 px-2 font-mono text-sm tracking-normal bg-gray-100 rounded">
                 {text.plain_text}
               </code>
             ) : text.href ? (
