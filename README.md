@@ -24,12 +24,14 @@ notion-nextjs-blog
 ├─ public
 ├─ src
 │  ├─ components
-│  │  ├─ common
-│  │  └─ page
+│  │  ├─ atoms
+│  │  ├─ molecules
+│  │  ├─ organisms
+│  │  └─ templates
 │  ├─ context
 │  ├─ lib
 │  ├─ models
-│  ├─ pagesv
+│  ├─ pages
 │  ├─ styles
 │  └─ util
 ├─ .babelrc
@@ -49,15 +51,14 @@ notion-nextjs-blog
 ## Get Starting
 
 1. https://developers.notion.com/docs#step-1-create-an-integration
-    ```dotenv
-    NOTION_KEY="Notsion API Internal Integration Token"
-    ```
+   ```dotenv
+   NOTION_KEY="Notsion API Internal Integration Token"
+   ```
 2. https://developers.notion.com/docs/getting-started#step-2-share-a-database-with-your-integration
-    ```dotoenv
-    NOTION_DATABASE_ID=""
-    ```
-3. Setting Page Properties<br><img width="450" alt="スクリーンショット 2021-11-22 12 51 56" src="https://user-images.githubusercontent.com/32505502/142798498-3066607c-d79c-43fe-a0f0-4cd76be30151.png">
-
+   ```dotoenv
+   NOTION_DATABASE_ID=""
+   ```
+3. Setting Page Properties<br><img width="450" alt="Setting Page Properties" src="https://user-images.githubusercontent.com/32505502/142798498-3066607c-d79c-43fe-a0f0-4cd76be30151.png">
 
 ## Deployment
 
