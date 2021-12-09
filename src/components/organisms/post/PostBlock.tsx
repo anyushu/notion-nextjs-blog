@@ -77,6 +77,20 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
         </blockquote>
       )
 
+    case 'to_do':
+      return (
+        <p className="flex items-center ml-2">
+          <input
+            id={id}
+            className="mr-3"
+            type="checkbox"
+            checked={block.to_do.checked ? true : false}
+            readOnly={true}
+          />
+          <label htmlFor={id}>{block.to_do.text[0].plain_text}</label>
+        </p>
+      )
+
     case 'image':
       // @ts-ignore
       const src = block.image.file.url as string
