@@ -2,6 +2,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  mode: 'jit',
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -9,10 +10,12 @@ module.exports = {
         sans: ['Red Hat Display', 'Noto Sans JP', 'sans-serif'],
       },
       colors: {
-        gray: colors.neutral,
+        gray: colors.slate,
         indigo: colors.indigo,
         red: colors.red,
+        pink: colors.pink,
         yellow: colors.amber,
+        orange: colors.orange,
         blue: colors.blue,
         green: colors.emerald,
         purple: colors.violet,
