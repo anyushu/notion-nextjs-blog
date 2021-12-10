@@ -16,7 +16,7 @@ const RichText: NextPage<Porps> = ({ className, texts }) => {
             textColor = 'text-yellow-900'
             break
           case 'orange':
-            textColor = 'text-yellow-600'
+            textColor = 'text-orange-500'
             break
           case 'yellow':
             textColor = 'text-yellow-500'
@@ -31,10 +31,10 @@ const RichText: NextPage<Porps> = ({ className, texts }) => {
             textColor = 'text-purple-500'
             break
           case 'pink':
-            textColor = 'text-red-300'
+            textColor = 'text-pink-500'
             break
           case 'red':
-            textColor = 'text-red-400'
+            textColor = 'text-red-500'
             break
           case 'gray':
             textColor = 'text-gray-500'

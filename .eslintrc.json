@@ -20,5 +20,6 @@
         }
       }
     ]
-  }
+  },
+  "ignorePatterns": ["/**/*.config.js"]
 }
