@@ -2,11 +2,22 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  mode: 'jit',
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       sans: ['Red Hat Display', 'Noto Sans JP', 'sans-serif'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        'Liberation Mono',
+        'Courier New',
+        'monospace',
+      ],
     },
     colors: {
       black: '#000',
@@ -26,11 +37,7 @@ module.exports = {
       green: colors.green,
       purple: colors.purple,
     },
-    extend: {
-      spacing: {
-        'per-t-46': '46.29%',
-      },
-    },
+    extend: {},
   },
   variants: {
     extend: {

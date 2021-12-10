@@ -1,4 +1,6 @@
+import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
+import { Fragment } from 'react'
 import { siteTitle } from 'next-seo.config'
 
 const headMenus = [
@@ -16,19 +18,54 @@ const Header = () => {
           <h1 className="text-lg font-bold tracking-widest">
             <Link href="/">{siteTitle}</Link>
           </h1>
-
           {/* menus */}
-          <nav className="flex">
-            {headMenus.map((val, key) => {
-              return (
-                <Link href={val.href} key={key}>
-                  <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700">
-                    {val.name}
-                  </a>
-                </Link>
-              )
-            })}
-          </nav>
+          <Popover>
+            <nav
+              className="flex relative justify-between lg:justify-start items-center sm:h-10"
+              aria-label="Global"
+            >
+              <div className="flex md:hidden items-center">
+                <Popover.Button className="bg-white focus:outline-none">
+                  <span>Menu</span>
+                </Popover.Button>
+              </div>
+              <div className="hidden md:flex">
+                {headMenus.map((val, key) => {
+                  return (
+                    <Link href={val.href} key={key}>
+                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700">
+                        {val.name}
+                      </a>
+                    </Link>
+                  )
+                })}
+              </div>
+            </nav>
+            <Transition
+              as={Fragment}
+              enter="duration-150 ease-out"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="duration-100 ease-in"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Popover.Panel
+                focus
+                className="md:hidden absolute inset-x-0 top-0 z-10 p-2 transition transform origin-top-right"
+              >
+                <div className="flex overflow-hidden justify-center py-6 px-3 bg-white rounded-lg ring-1 ring-black ring-opacity-5 shadow-md">
+                  {headMenus.map((val, key) => {
+                    return (
+                      <Link href={val.href} key={key}>
+                        <a className="px-3 leading-4 text-center hover:text-gray-700">{val.name}</a>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </Popover>
         </div>
       </div>
     </header>
