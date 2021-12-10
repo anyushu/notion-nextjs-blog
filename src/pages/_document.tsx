@@ -13,7 +13,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body>
+        <body className="text-black-900 dark:text-white bg-white dark:bg-black-900">
           {GTM_ID && (
             <noscript>
               <iframe
