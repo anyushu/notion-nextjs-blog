@@ -34,7 +34,7 @@ const Header = () => {
                 {headMenus.map((val, key) => {
                   return (
                     <Link href={val.href} key={key}>
-                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700">
+                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700 focus-visible:outline-none">
                         {val.name}
                       </a>
                     </Link>
@@ -62,7 +62,9 @@ const Header = () => {
                   {headMenus.map((val, key) => {
                     return (
                       <Link href={val.href} key={key}>
-                        <a className="px-3 leading-4 text-center hover:text-gray-700">{val.name}</a>
+                        <a className="px-3 leading-4 text-center hover:text-gray-700 focus-visible:outline-none">
+                          {val.name}
+                        </a>
                       </Link>
                     )
                   })}
