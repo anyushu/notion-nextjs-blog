@@ -75,7 +75,7 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'quote':
       return (
-        <blockquote id={id} className="py-2 px-3 my-3 bg-gray-100 border-l-2">
+        <blockquote id={id} className="py-2 px-3 my-3 bg-gray-100 dark:bg-black-700 border-l-2">
           <p className="whitespace-pre-wrap">{block.quote.text[0].plain_text}</p>
         </blockquote>
       )
@@ -134,7 +134,7 @@ const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
 
     case 'callout':
       return (
-        <div className="flex items-start p-3 bg-gray-100 rounded">
+        <div className="flex items-start p-3 bg-gray-100 dark:bg-black-700 rounded">
           <Twemoji
             className="block mt-1 mr-3 w-5 h-5"
             onlyEmojiClassName="twemoji"

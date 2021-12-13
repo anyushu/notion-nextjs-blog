@@ -4,12 +4,14 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   mode: 'jit',
   content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Red Hat Display', 'Noto Sans JP', 'sans-serif'],
       },
       colors: {
+        black: colors.slate,
         gray: colors.slate,
         indigo: colors.indigo,
         red: colors.red,

@@ -1,4 +1,5 @@
 import { DefaultSeo } from 'next-seo'
+import { ThemeProvider } from 'next-themes'
 import { AppProps } from 'next/app'
 import React from 'react'
 import GoogleTagManager from 'components/templates/GoogleTagManager'
@@ -11,7 +12,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <DefaultSeo {...defaultSeo} />
       {GTM_ID && <GoogleTagManager googleTagManagerId={GTM_ID} />}
-      <Component {...pageProps} />
+
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   )
 }

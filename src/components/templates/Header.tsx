@@ -1,6 +1,7 @@
 import { Popover, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { Fragment } from 'react'
+import ToggleColorMode from 'components/organisms/ToggleColorMode'
 import { siteTitle } from 'next-seo.config'
 
 const headMenus = [
@@ -25,20 +26,23 @@ const Header = () => {
               aria-label="Global"
             >
               <div className="flex md:hidden items-center">
-                <Popover.Button className="bg-white focus:outline-none">
+                <Popover.Button className="bg-white dark:bg-black-900 focus:outline-none">
                   <span>Menu</span>
                 </Popover.Button>
               </div>
-              <div className="hidden md:flex">
+              <div className="hidden md:flex items-center">
                 {headMenus.map((val, key) => {
                   return (
                     <Link href={val.href} key={key}>
-                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700">
+                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700 focus-visible:outline-none">
                         {val.name}
                       </a>
                     </Link>
                   )
                 })}
+                <div className="ml-6 leading-none">
+                  <ToggleColorMode />
+                </div>
               </div>
             </nav>
             <Transition
@@ -54,14 +58,19 @@ const Header = () => {
                 focus
                 className="md:hidden absolute inset-x-0 top-0 z-10 p-2 transition transform origin-top-right"
               >
-                <div className="flex overflow-hidden justify-center py-6 px-3 bg-white rounded-lg ring-1 ring-black ring-opacity-5 shadow-md">
+                <div className="flex overflow-hidden justify-center items-center py-6 px-3 bg-white dark:bg-black-800 rounded-lg ring-1 ring-black-900 ring-opacity-5 shadow-md">
                   {headMenus.map((val, key) => {
                     return (
                       <Link href={val.href} key={key}>
-                        <a className="px-3 leading-4 text-center hover:text-gray-700">{val.name}</a>
+                        <a className="px-3 leading-4 text-center hover:text-gray-700 focus-visible:outline-none">
+                          {val.name}
+                        </a>
                       </Link>
                     )
                   })}
+                  <div className="ml-6 leading-none">
+                    <ToggleColorMode />
+                  </div>
                 </div>
               </Popover.Panel>
             </Transition>

@@ -53,7 +53,7 @@ const RichText: NextPage<Porps> = ({ className, texts }) => {
             }`}
           >
             {text.annotations?.code ? (
-              <code className="py-1 px-2 font-mono text-sm tracking-normal bg-gray-100 rounded">
+              <code className="py-1 px-2 font-mono text-sm tracking-normal bg-gray-100 dark:bg-black-700 rounded">
                 {text.plain_text}
               </code>
             ) : text.href ? (
