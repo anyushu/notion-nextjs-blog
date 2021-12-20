@@ -1,4 +1,4 @@
-import { notion } from './client'
+import { notion } from 'lib/notion/client'
 
 /**
  * get notion pages by id
