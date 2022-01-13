@@ -13,7 +13,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <DefaultSeo {...defaultSeo} />
       {GTM_ID && <GoogleTagManager googleTagManagerId={GTM_ID} />}
 
-      <ThemeProvider attribute="class" defaultTheme="light">
+      <ThemeProvider attribute="class" defaultTheme="light" storageKey="anyushu-theme">
         <Component {...pageProps} />
       </ThemeProvider>
     </>

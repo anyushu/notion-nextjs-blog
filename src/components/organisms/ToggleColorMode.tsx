@@ -5,12 +5,12 @@ const ToggleColorMode = () => {
   const { theme, setTheme } = useTheme()
 
   return (
-    <button onClick={() => setTheme(theme == 'dark' ? 'light' : 'dark')}>
+    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
       <Twemoji
         className="block w-5 h-5 text-xl"
         onlyEmojiClassName="twemoji"
         svg
-        text={theme == 'dark' ? '🌕' : '🌑'}
+        text={theme === 'dark' ? '🌕' : '🌑'}
       />
     </button>
   )
