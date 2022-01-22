@@ -1,5 +1,5 @@
-import { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints'
 import PostBlock from 'components/organisms/post/PostBlock'
+import { GetBlockResponse } from 'types/notion'
 
 type Porps = {
   blocks: GetBlockResponse[]

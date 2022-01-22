@@ -12,7 +12,7 @@ const headMenus = [
 
 const Header = () => {
   return (
-    <header id="header" className="p-3 md:py-24 md:px-0 mb-12 md:mb-0">
+    <header id="header" className="p-3 mb-12 md:py-24 md:px-0 md:mb-0">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           {/* logo */}
@@ -22,19 +22,19 @@ const Header = () => {
           {/* menus */}
           <Popover>
             <nav
-              className="flex relative justify-between lg:justify-start items-center sm:h-10"
+              className="flex relative justify-between items-center sm:h-10 lg:justify-start"
               aria-label="Global"
             >
-              <div className="flex md:hidden items-center">
+              <div className="flex items-center md:hidden">
                 <Popover.Button className="bg-white dark:bg-black-900 focus:outline-none">
                   <span>Menu</span>
                 </Popover.Button>
               </div>
-              <div className="hidden md:flex items-center">
+              <div className="hidden items-center md:flex">
                 {headMenus.map((val, key) => {
                   return (
                     <Link href={val.href} key={key}>
-                      <a className="ml-6 text-sm md:text-base leading-4 hover:text-gray-700 focus-visible:outline-none">
+                      <a className="ml-6 text-sm leading-4 hover:text-gray-700 focus-visible:outline-none md:text-base">
                         {val.name}
                       </a>
                     </Link>
@@ -56,9 +56,9 @@ const Header = () => {
             >
               <Popover.Panel
                 focus
-                className="md:hidden absolute inset-x-0 top-0 z-10 p-2 transition transform origin-top-right"
+                className="absolute inset-x-0 top-0 z-10 p-2 transition origin-top-right md:hidden"
               >
-                <div className="flex overflow-hidden justify-center items-center py-6 px-3 bg-white dark:bg-black-800 rounded-lg ring-1 ring-black-900 ring-opacity-5 shadow-md">
+                <div className="flex overflow-hidden justify-center items-center py-6 px-3 bg-white dark:bg-black-800 rounded-lg ring-1 ring-black-900 shadow-md">
                   {headMenus.map((val, key) => {
                     return (
                       <Link href={val.href} key={key}>

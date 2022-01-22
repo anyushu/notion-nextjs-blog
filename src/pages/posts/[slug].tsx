@@ -1,4 +1,3 @@
-import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import type { GetStaticPropsContext, NextPage } from 'next'
 import { NextSeo } from 'next-seo'
 import Button from 'components/atoms/Button'
@@ -10,29 +9,7 @@ import getBlocks from 'lib/notion/getBlocks'
 import getPage from 'lib/notion/getPage'
 import getPageIndex from 'lib/notion/getPageIndex'
 import type { Post } from 'models/notion'
-
-export async function getStaticPaths() {
-  const database = await getPageIndex(process.env.NOTION_DATABASE_ID || '')
-  const paths = database.map((post) => ({
-    params: {
-      slug: post.id,
-    },
-  }))
-
-  return { paths, fallback: false }
-}
-
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const post = await getPage(context?.params?.slug as string)
-  const blocks = await getBlocks(context?.params?.slug as string)
-
-  return {
-    props: {
-      post,
-      blocks,
-    },
-  }
-}
+import type { GetBlockResponse } from 'types/notion'
 
 const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blocks }) => {
   if (!post || !blocks) {
@@ -50,7 +27,7 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
         <Layout>
           <Container>
             <PostHeader post={post} />
-            <div className="md:px-24 mt-12 md:mt-24 tracking-wider leading-relaxed">
+            <div className="mt-12 tracking-wider leading-relaxed md:px-24 md:mt-24">
               <PostContent blocks={blocks} />
             </div>
             <div className="mt-12 tracking-widest text-center">
@@ -64,3 +41,26 @@ const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blo
 }
 
 export default Index
+
+export const getStaticPaths = async () => {
+  const database = await getPageIndex(process.env.NOTION_DATABASE_ID || '')
+  const paths = database.map((post) => ({
+    params: {
+      slug: post.id,
+    },
+  }))
+
+  return { paths, fallback: false }
+}
+
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const post = await getPage(context?.params?.slug as string)
+  const blocks = await getBlocks(context?.params?.slug as string)
+
+  return {
+    props: {
+      post,
+      blocks,
+    },
+  }
+}
