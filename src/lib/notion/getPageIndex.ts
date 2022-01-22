@@ -1,4 +1,4 @@
-import { notion, databaseFilter } from './client'
+import { notion, databaseFilter } from 'lib/notion/client'
 
 /**
  * get notion database by id

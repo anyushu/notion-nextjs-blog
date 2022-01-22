@@ -3,7 +3,7 @@ import Heading from 'components/atoms/Heading'
 
 const Hero = () => {
   return (
-    <Container className="container px-3 md:px-0 mx-auto mb-12 md:mb-24">
+    <Container className="container px-3 mx-auto mb-12 md:px-0 md:mb-24">
       <Heading h={2} className="tracking-wider leading-relaxed">
         Hi, I am a front-end engineer.
       </Heading>

@@ -2,7 +2,7 @@ import type {
   GetDatabaseResponse,
   QueryDatabaseResponse,
 } from '@notionhq/client/build/src/api-endpoints'
-import { notion, databaseFilter } from './client'
+import { notion, databaseFilter } from 'lib/notion/client'
 
 /**
  * get notion database by id

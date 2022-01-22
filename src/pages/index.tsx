@@ -8,16 +8,6 @@ import Layout from 'components/templates/Layout'
 import { getDatabaseChildren } from 'lib/notion/getDatabase'
 import type { Post } from 'models/notion'
 
-export async function getStaticProps() {
-  const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
-
-  return {
-    props: {
-      posts: database.results,
-    },
-  }
-}
-
 const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (
     <>
@@ -37,3 +27,13 @@ const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
 }
 
 export default Home
+
+export const getStaticProps = async () => {
+  const database = await getDatabaseChildren(process.env.NOTION_DATABASE_ID || '')
+
+  return {
+    props: {
+      posts: database.results,
+    },
+  }
+}

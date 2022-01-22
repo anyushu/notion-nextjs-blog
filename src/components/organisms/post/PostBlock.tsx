@@ -1,4 +1,3 @@
-import type { GetBlockResponse } from '@notionhq/client/build/src/api-endpoints.d'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { Twemoji } from 'react-emoji-render'
@@ -7,6 +6,7 @@ import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import Heading from 'components/atoms/Heading'
 import RichText from 'components/organisms/post/RichText'
 import { RichTextItem } from 'models/notion'
+import type { GetBlockResponse } from 'types/notion'
 import { jpParse } from 'util/japaneseParser'
 
 /**
