@@ -1,4 +1,5 @@
 import { notion } from 'lib/notion/client'
+import { GetBlockResponse } from 'types/notion'
 
 /**
  * get notion pages by id
@@ -6,7 +7,7 @@ import { notion } from 'lib/notion/client'
  * @param {string} pageId
  * @returns notion.pages.retrieve
  */
-export default async function getBlocks(blockId: string) {
+export default async function getBlocks(blockId: string): Promise<GetBlockResponse[]> {
   let results = []
   let response = await notion.blocks.children.list({
     block_id: blockId,
@@ -19,5 +20,5 @@ export default async function getBlocks(blockId: string) {
     })
     results = [...results, ...response.results]
   }
-  return results
+  return results as GetBlockResponse[]
 }

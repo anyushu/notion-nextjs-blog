@@ -1,18 +1,18 @@
-import { NextPage } from 'next'
 import Image from 'next/image'
+import type { FC } from 'react'
 import { Twemoji } from 'react-emoji-render'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { ocean } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import Heading from 'components/atoms/Heading'
 import RichText from 'components/organisms/post/RichText'
-import { RichTextItem } from 'models/notion'
+import { RichTextItem } from 'types/notion'
 import type { GetBlockResponse } from 'types/notion'
 import { jpParse } from 'util/japaneseParser'
 
 /**
  * Notion Block render
  */
-const PostBlock: NextPage<{ block: GetBlockResponse }> = ({ block }) => {
+const PostBlock: FC<{ block: GetBlockResponse }> = ({ block }) => {
   const { type, id } = block
 
   switch (type) {

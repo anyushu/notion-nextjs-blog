@@ -1,5 +1,5 @@
 import PostCard from 'components/organisms/post/PostCard'
-import type { Post } from 'models/notion'
+import type { Post } from 'types/notion'
 
 type Props = {
   posts: Post[]

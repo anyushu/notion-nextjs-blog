@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { RichTextItem } from 'models/notion'
+import { RichTextItem } from 'types/notion'
 
 type Porps = {
   className?: string

@@ -6,7 +6,7 @@ import Posts from 'components/molecules/Posts'
 import Hero from 'components/organisms/Hero'
 import Layout from 'components/templates/Layout'
 import { getDatabaseChildren } from 'lib/notion/getDatabase'
-import type { Post } from 'models/notion'
+import type { Post } from 'types/notion'
 
 const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (

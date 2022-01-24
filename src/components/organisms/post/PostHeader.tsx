@@ -1,5 +1,5 @@
 import Heading from 'components/atoms/Heading'
-import { Post } from 'models/notion'
+import { Post } from 'types/notion'
 import { formatDate } from 'util/formatDate'
 import { jpParse } from 'util/japaneseParser'
 

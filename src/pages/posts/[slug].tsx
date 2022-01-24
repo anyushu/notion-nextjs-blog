@@ -8,8 +8,7 @@ import Layout from 'components/templates/Layout'
 import getBlocks from 'lib/notion/getBlocks'
 import getPage from 'lib/notion/getPage'
 import getPageIndex from 'lib/notion/getPageIndex'
-import type { Post } from 'models/notion'
-import type { GetBlockResponse } from 'types/notion'
+import type { Post, GetBlockResponse } from 'types/notion'
 
 const Index: NextPage<{ post: Post; blocks: GetBlockResponse[] }> = ({ post, blocks }) => {
   if (!post || !blocks) {
