@@ -9,4 +9,5 @@ export const siteTitle = 'Anyushu'
 export const defaultSeo = {
   defaultTitle: siteTitle,
   titleTemplate: `%s | ${siteTitle}`,
+  noindex: true,
 }

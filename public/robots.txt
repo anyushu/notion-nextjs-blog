@@ -7,3 +7,4 @@ Host: https://anyushu.com
 
 # Sitemaps
 Sitemap: https://anyushu.com/sitemap.xml
+Sitemap: https://anyushu.com/sitemap-0.xml
